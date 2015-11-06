@@ -1,34 +1,21 @@
 package grafica;
 
-import java.rmi.Naming;
-import java.util.LinkedList;
-import java.util.List;
-
-import logica.Fachada;
-import logica.valueObjects.VODueño;
+import java.awt.EventQueue;
 
 public class Main {
 
   public static void main(String[] args) {
-	// TODO Auto-generated method stub
-		
-	try
-	  {
-		// Invoco a la fachada remota.
-	    Fachada facha = (Fachada)Naming.lookup ("//localhost:1099/fachada");
-
-		List <VODueño> listad = new LinkedList<VODueño> ();
-		listad = facha.listarDueños ();
-		for(VODueño item : listad) {
-			int cedula = item.getCedula ();
-			String nombre = item.getNombre ();
-			String apellido = item.getApellido ();
-			System.out.print("Datos: " + cedula + " - " + nombre + " - " + apellido + "\n");
+	  
+    /* el programa principal únicamente despliega la ventana principal */
+	EventQueue.invokeLater(new Runnable() {
+		public void run() {
+			try {
+				VentanaDueños window = new VentanaDueños();
+				window.frame.setVisible(true);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-	  }
-	  catch (Exception e)
-	  {
-	    e.printStackTrace();
-	  }		
+		}
+	});	
   }				
 }
