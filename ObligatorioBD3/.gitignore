@@ -1,0 +1,5 @@
+*.class
+.dropbox
+desktop.ini
+.settings/
+bin/
