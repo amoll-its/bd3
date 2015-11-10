@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
-public class VentanaDueños {
+public class VentanaDuenios {
 
 	JFrame frame;
 	private JTextField txtCedula;
@@ -25,7 +25,7 @@ public class VentanaDueños {
 	/**
 	 * Create the application.
 	 */
-	public VentanaDueños() {
+	public VentanaDuenios() {
 		initialize();
 	}
 
