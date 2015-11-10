@@ -9,7 +9,14 @@ import logica.valueObjects.VOMascota;
 public interface Fachada extends java.rmi.Remote {
 	
 	public List <VODueño> listarDueños  () throws RemoteException;
-//	public void nuevoDueño (VODueño vod);
-//	public void nuevaMascota (VOMascota vom);
 
+	public boolean nuevoDueño (VODueño vod) throws RemoteException;
+
+	public boolean nuevaMascota (VOMascota vom) throws RemoteException;
+
+	public List <VOMascota> listarMascotas (VODueño vod) throws RemoteException;
+
+	public void borrarDueñoMascotas (VODueño vod) throws RemoteException;
+	
+	
 }

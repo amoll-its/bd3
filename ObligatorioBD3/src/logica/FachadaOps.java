@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import logica.valueObjects.VODueño;
+import logica.valueObjects.VOMascota;
 import persistencia.daos.DAODueños;
 
 import java.rmi.RemoteException;
@@ -17,14 +18,6 @@ public class FachadaOps
 		// TODO Auto-generated constructor stub
 	}
 
-//	public void nuevoDueño (VODueño vod) {
-//		
-//	}
-	
-//	public void nuevaMascota (VOMascota vom) {
-//		
-//	}
-
 	public List <VODueño> listarDueños  () throws RemoteException {
 
 		DAODueños ddueños = new DAODueños ();  
@@ -36,14 +29,24 @@ public class FachadaOps
 		return lista;	
 		
 	}
-	/*
-	
-	public List <VOMascota> listarMascotas (int cedDue) {
+
+	public boolean nuevoDueño (VODueño vod) throws RemoteException {
+		return false;
+		
+	}
+
+	public boolean nuevaMascota (VOMascota vom) throws RemoteException {
+		return false;
+		
+	}
+
+	public List <VOMascota> listarMascotas (VODueño vod) throws RemoteException {
+		return null;
+		
+	}
+
+	public void borrarDueñoMascotas (VODueño vod) throws RemoteException {
 		
 	}
 	
-	public void borrarDueñoMascotas (int cedDue) {
-		
-	}
-*/
 }
