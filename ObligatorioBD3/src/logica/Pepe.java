@@ -7,7 +7,7 @@ import logica.valueObjects.VODueño;
 public class Pepe {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub HUMBERTO
+		// TODO Auto-generated method stub HUMBERTO  x
 		try
 		  {
 			int cedula = 7654321;
