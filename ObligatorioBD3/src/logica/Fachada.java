@@ -13,7 +13,7 @@ public interface Fachada extends java.rmi.Remote {
 
 	public void nuevoDueño (VODueño vod) throws RemoteException, PreexistingEntityException;
 
-	public void nuevaMascota (VOMascota vom) throws RemoteException;
+	public void nuevaMascota (VOMascota vom) throws RemoteException, PreexistingEntityException;
 
 	public List <VOMascota> listarMascotas (VODueño vod) throws RemoteException;
 

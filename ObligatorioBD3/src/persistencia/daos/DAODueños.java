@@ -95,7 +95,15 @@ public class DAODueños {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
+		/* cierro la conexión */
+		try {
+			abd.cierroCon(con);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		
 	}
 

@@ -3,6 +3,7 @@ package logica;
 import java.rmi.Naming;
 
 import logica.valueObjects.VODueño;
+import logica.valueObjects.VOMascota;
 
 public class Pepe {
 
@@ -18,7 +19,15 @@ public class Pepe {
 			
 			// Invoco a la fachada remota.
 		    Fachada facha = (Fachada)Naming.lookup ("//localhost:1099/fachada");
-			facha.nuevoDueño (vod);
+//			facha.nuevoDueño (vod);
+		    
+		    String apodo = "Rambo"; 
+		    String raza = "Doberman";
+		    
+			VOMascota vom = new VOMascota (apodo, raza ,cedula);
+		    facha.nuevaMascota(vom);
+		    
+		    
 		  }
 		  catch (Exception e)
 		  {
