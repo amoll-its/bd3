@@ -3,8 +3,12 @@ package persistencia.consultas;
 public class Consultas {
 	
 	public String listarDueños ()  {
-		/* texto de la consulta que obtiene todos los dueños */
 		String query = "select * from Duenios";
+		return query;
+	}
+
+	public String insertarDueño ()  {
+		String query = "insert into Duenios (cedula, nombre, apellido) values (?,?,?)";
 		return query;
 	}
 

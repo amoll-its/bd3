@@ -3,6 +3,8 @@ package logica;
 import java.util.LinkedList;
 import java.util.List;
 
+import logica.Entidades.EDueño;
+import logica.excepciones.PreexistingEntityException;
 import logica.valueObjects.VODueño;
 import logica.valueObjects.VOMascota;
 import persistencia.daos.DAODueños;
@@ -22,21 +24,27 @@ public class FachadaOps
 
 		DAODueños ddueños = new DAODueños ();  
 		
-		// Cargo la lista de exámenes
+		// Cargo la lista de dueños
 		List <VODueño> lista = new LinkedList<VODueño> ();
 		lista = ddueños.listarDueños ();
 		
-		return lista;	
-		
+		return lista;			
 	}
 
-	public boolean nuevoDueño (VODueño vod) throws RemoteException {
-		return false;
+	public void nuevoDueño (VODueño vod) throws RemoteException, PreexistingEntityException {
+
+		int cedula = vod.getCedula();
+		String nombre = vod.getNombre();
+		String apellido = vod.getApellido();
 		
+		EDueño ed = new EDueño (cedula,nombre,apellido);  		
+		
+		DAODueños ddueños = new DAODueños ();
+		ddueños.insert (ed);
+				
 	}
 
-	public boolean nuevaMascota (VOMascota vom) throws RemoteException {
-		return false;
+	public void nuevaMascota (VOMascota vom) throws RemoteException {
 		
 	}
 
