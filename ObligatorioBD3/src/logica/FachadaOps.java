@@ -5,6 +5,7 @@ import java.util.List;
 
 import logica.Entidades.EDueño;
 import logica.Entidades.EMascota;
+import logica.excepciones.NonexistentEntityException;
 import logica.excepciones.PreexistingEntityException;
 import logica.valueObjects.VODueño;
 import logica.valueObjects.VOMascota;
@@ -47,7 +48,7 @@ public class FachadaOps
 				
 	}
 
-	public void nuevaMascota (VOMascota vom) throws RemoteException, PreexistingEntityException {
+	public void nuevaMascota (VOMascota vom) throws RemoteException, NonexistentEntityException {
 
 		String apodo = vom.getApodo();
 		String raza = vom.getRaza();
@@ -59,8 +60,8 @@ public class FachadaOps
 		try {
 			dmascotas.insert (em);
 		} catch (SQLException e) {
-			System.out.print("Algo se rompió!\n");
-			e.printStackTrace();
+//			System.out.print("Algo se rompió!\n");
+            throw new NonexistentEntityException("El usuario no existe.");
 		}
 
 	}

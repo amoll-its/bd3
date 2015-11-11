@@ -17,7 +17,7 @@ public class DAOMascotas {
 		this.cedulaDueño = cedulaDueño;
 	}
 
-	public void insert (EMascota em) throws PreexistingEntityException,SQLException  {
+	public void insert (EMascota em) throws SQLException  {
 
 		// Abro la conexión a la BD
 		Connection con = null;
