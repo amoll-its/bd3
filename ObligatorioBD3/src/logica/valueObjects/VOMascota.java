@@ -1,5 +1,7 @@
 package logica.valueObjects;
 
+import java.io.Serializable;
+
 public class VOMascota {
 	private String apodo;
 	private String raza;

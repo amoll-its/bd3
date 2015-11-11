@@ -10,7 +10,7 @@ public class Main {
 	EventQueue.invokeLater(new Runnable() {
 		public void run() {
 			try {
-				VentanaDueños window = new VentanaDueños();
+				VentanaDuenios window = new VentanaDuenios();
 				window.frame.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();

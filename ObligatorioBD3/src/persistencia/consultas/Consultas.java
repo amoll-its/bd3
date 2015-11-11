@@ -12,4 +12,9 @@ public class Consultas {
 		return query;
 	}
 
+	public String insertarMascota ()  {
+		String query = "insert into Mascotas (apodo, raza, cedulaDuenio) values (?,?,?)";
+		return query;
+	}
+
 }

@@ -4,10 +4,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 import logica.Entidades.EDueño;
+import logica.Entidades.EMascota;
 import logica.excepciones.PreexistingEntityException;
 import logica.valueObjects.VODueño;
 import logica.valueObjects.VOMascota;
 import persistencia.daos.DAODueños;
+import persistencia.daos.DAOMascotas;
 
 import java.rmi.RemoteException;
 
@@ -44,11 +46,22 @@ public class FachadaOps
 				
 	}
 
-	public void nuevaMascota (VOMascota vom) throws RemoteException {
+	public void nuevaMascota (VOMascota vom) throws RemoteException, PreexistingEntityException {
+
+		String apodo = vom.getApodo();
+		String raza = vom.getRaza();
+		int cedula = vom.getCedulaDueño();
+
+		EMascota em = new EMascota (apodo,raza,cedula);  		
+		
+		DAOMascotas dmascotas = new DAOMascotas (cedula);
+		dmascotas.insert (em);
+
 		
 	}
 
 	public List <VOMascota> listarMascotas (VODueño vod) throws RemoteException {
+
 		return null;
 		
 	}
