@@ -2,7 +2,7 @@ package logica.valueObjects;
 
 import java.io.Serializable;
 
-public class VOMascota {
+public class VOMascota implements Serializable {
 	private String apodo;
 	private String raza;
 	private int cedulaDueño;

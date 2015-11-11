@@ -12,6 +12,7 @@ import persistencia.daos.DAODueños;
 import persistencia.daos.DAOMascotas;
 
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 
 public class FachadaOps
   extends java.rmi.server.UnicastRemoteObject
@@ -55,9 +56,13 @@ public class FachadaOps
 		EMascota em = new EMascota (apodo,raza,cedula);  		
 		
 		DAOMascotas dmascotas = new DAOMascotas (cedula);
-		dmascotas.insert (em);
+		try {
+			dmascotas.insert (em);
+		} catch (SQLException e) {
+			System.out.print("Algo se rompió!\n");
+			e.printStackTrace();
+		}
 
-		
 	}
 
 	public List <VOMascota> listarMascotas (VODueño vod) throws RemoteException {

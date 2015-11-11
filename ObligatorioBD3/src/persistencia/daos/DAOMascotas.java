@@ -17,7 +17,7 @@ public class DAOMascotas {
 		this.cedulaDueño = cedulaDueño;
 	}
 
-	public void insert (EMascota em) throws PreexistingEntityException {
+	public void insert (EMascota em) throws PreexistingEntityException,SQLException  {
 
 		// Abro la conexión a la BD
 		Connection con = null;
@@ -32,25 +32,15 @@ public class DAOMascotas {
 
 		Consultas cons = new Consultas ();
 		String creareg = cons.insertarMascota();
-		try {
 			java.sql.PreparedStatement pstmt = con.prepareStatement(creareg);
 			pstmt.setString(1, em.getApodo());
 			pstmt.setString(2, em.getRaza());
 			pstmt.setInt(3, cedulaDueño);
 			int result=pstmt.executeUpdate();
 			pstmt.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		/* cierro la conexión */
-		try {
 			abd.cierroCon(con);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		
 	}
