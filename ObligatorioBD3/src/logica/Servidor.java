@@ -1,5 +1,6 @@
 package logica;
 
+import java.lang.management.ManagementFactory;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -15,6 +16,7 @@ public class Servidor {
 		// instancio mi Objeto Remoto y lo publico
 		FachadaOps fachadaops = new FachadaOps();
 		System.out.println ("Antes de publicarlo");
+		System.out.printf("%s \n", ManagementFactory.getRuntimeMXBean().getName());
 		Naming.rebind("//localhost:1099/fachada", fachadaops);
 		System.out.println ("Luego de publicarlo");
 		}

@@ -7,6 +7,12 @@ public class Consultas {
 		return query;
 	}
 
+	public String buscarDueño ()  {
+		String query = "select * from Duenios where cedula = ?";
+		
+		return query;
+	}
+	
 	public String insertarDueño ()  {
 		String query = "insert into Duenios (cedula, nombre, apellido) values (?,?,?)";
 		return query;
@@ -14,6 +20,11 @@ public class Consultas {
 
 	public String insertarMascota ()  {
 		String query = "insert into Mascotas (apodo, raza, cedulaDuenio) values (?,?,?)";
+		return query;
+	}
+
+	public String listarMascotas ()  {
+		String query = "select * from Mascotas where cedulaDuenio = ?";
 		return query;
 	}
 

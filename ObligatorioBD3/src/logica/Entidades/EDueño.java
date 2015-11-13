@@ -1,5 +1,14 @@
 package logica.Entidades;
 
+import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
+
+import logica.valueObjects.VODueño;
+import logica.valueObjects.VOMascota;
+import persistencia.daos.DAODueños;
+import persistencia.daos.DAOMascotas;
+
 public class EDueño {
 
 	private int cedula;
@@ -24,4 +33,15 @@ public class EDueño {
 		return apellido;
 	}
 
+	public List<VOMascota> listarMascotas() throws SQLException {
+
+		DAOMascotas dmascotas = new DAOMascotas (cedula);
+		List <VOMascota> lista = new LinkedList<VOMascota> ();
+		lista = dmascotas.listarMascotas();
+		
+		return lista;	
+		
+		
+	}
+	
 }

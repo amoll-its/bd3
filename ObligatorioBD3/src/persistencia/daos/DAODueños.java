@@ -8,9 +8,8 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.mysql.jdbc.PreparedStatement;
-
 import logica.Entidades.EDueño;
+import logica.excepciones.NonexistentEntityException;
 import logica.excepciones.PreexistingEntityException;
 import logica.valueObjects.VODueño;
 import persistencia.consultas.Consultas;
@@ -107,4 +106,54 @@ public class DAODueños {
 		
 	}
 
+	public EDueño find (int ced) throws NonexistentEntityException {
+		/* Busca un dueño a partir de su cédula */
+
+		int cedula = 0;
+		String nombre = "";
+		String apellido = ""; 		
+		
+		// Abro la conexión a la BD
+		Connection con = null;
+		AccesoBD abd = new AccesoBD();
+		if (con == null)
+		try {
+			con = abd.abroCon();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Consultas cons = new Consultas ();
+		String buscad = cons.buscarDueño();
+		try {
+			java.sql.PreparedStatement pstmt = con.prepareStatement(buscad);
+			pstmt.setInt(1, ced);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				cedula = rs.getInt ("cedula");
+				nombre = rs.getString ("nombre");
+				apellido = rs.getString ("apellido"); 
+			}
+			rs.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		/* cierro la conexión */
+		try {
+			abd.cierroCon(con);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		EDueño ed = new EDueño(cedula,nombre,apellido);	
+		return ed;
+		
+	}
+	
 }

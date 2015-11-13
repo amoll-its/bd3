@@ -1,6 +1,8 @@
 package logica;
 
 import java.rmi.Naming;
+import java.util.LinkedList;
+import java.util.List;
 
 import logica.valueObjects.VODueño;
 import logica.valueObjects.VOMascota;
@@ -21,12 +23,21 @@ public class Pepe {
 		    Fachada facha = (Fachada)Naming.lookup ("//localhost:1099/fachada");
 //			facha.nuevoDueño (vod);
 		    
-		    String apodo = "Rambo"; 
-		    String raza = "Doberman";
+//		    String apodo = "Rambo"; 
+//		    String raza = "Doberman";
 		    
-			VOMascota vom = new VOMascota (apodo, raza ,cedula);
-		    facha.nuevaMascota(vom);
-		    
+//			VOMascota vom = new VOMascota (apodo, raza ,cedula);
+//		    facha.nuevaMascota(vom);
+
+			List <VOMascota> lm = new LinkedList<VOMascota> ();
+			lm = facha.listarMascotas (vod);
+			for(VOMascota item : lm) {
+				String apodo = item.getApodo ();
+				String raza = item.getRaza ();
+				int cedulaDuenio = item.getCedulaDueño ();
+				System.out.print("Datos: " + cedulaDuenio + " - " + apodo + " - " + raza + "\n");
+				}
+
 		    
 		  }
 		  catch (Exception e)

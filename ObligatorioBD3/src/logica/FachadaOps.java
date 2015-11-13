@@ -66,9 +66,23 @@ public class FachadaOps
 
 	}
 
-	public List <VOMascota> listarMascotas (VODueño vod) throws RemoteException {
+	public List <VOMascota> listarMascotas (VODueño vod) throws RemoteException, NonexistentEntityException {
 
-		return null;
+		int cedula=vod.getCedula();
+		DAODueños ddueños = new DAODueños ();
+
+		// Busco al dueño según la cédula
+		EDueño ed = ddueños.find(cedula);
+
+		List <VOMascota> lista = new LinkedList<VOMascota> ();
+		try {
+			lista = ed.listarMascotas();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return lista;			
 		
 	}
 
