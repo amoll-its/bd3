@@ -22,8 +22,7 @@ public class PoolConexiones implements IPoolConexiones {
 
 		try{
 			Properties propiedades = new Properties();
-			propiedades
-			.load(new FileInputStream("D:\\Varios\\eclipse\\workspace\\Practico4\\src\\conexion.properties"));
+			propiedades.load(new FileInputStream("conexion.properties"));
 	 
 			/**Obtenemos los parametros definidos en el archivo*/
 			driver = propiedades.getProperty("driver");
