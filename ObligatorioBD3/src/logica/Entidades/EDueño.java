@@ -43,5 +43,10 @@ public class EDueño {
 		
 		
 	}
+
+	public void borrarMascotas() throws SQLException {
+		DAOMascotas dmascotas = new DAOMascotas (cedula);
+		dmascotas.borrarMascotas();
+	}
 	
 }

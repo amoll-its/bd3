@@ -87,6 +87,19 @@ public class FachadaOps
 	}
 
 	public void borrarDueñoMascotas (VODueño vod) throws RemoteException {
+
+		int cedula=vod.getCedula();
+		DAODueños ddueños = new DAODueños ();
+
+		// Busco al dueño según la cédula
+		EDueño ed = ddueños.find(cedula);
+
+		try {
+			lista = ed.borrarMascotas();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	

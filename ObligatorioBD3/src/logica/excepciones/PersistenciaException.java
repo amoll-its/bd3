@@ -1,4 +1,4 @@
-package poolConexiones;
+package logica.excepciones;
 
 
 public class PersistenciaException extends Exception {
