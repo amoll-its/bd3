@@ -8,7 +8,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import excepciones.PersistenciaException;
+import logica.excepciones.PersistenciaException;
 
 
 public class PoolConexiones implements IPoolConexiones {
