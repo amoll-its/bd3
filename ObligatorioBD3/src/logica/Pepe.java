@@ -13,21 +13,21 @@ public class Pepe {
 		// TODO Auto-generated method stub HUMBERTO SANTANA - ppp
 		try
 		  {
-			int cedula = 7654321;
+			int cedula = 1234567;
 			String nombre = "Juan";
 			String apellido = "Perez";
 			
 			VODueño vod = new VODueño (cedula, nombre, apellido);
 			
 			// Invoco a la fachada remota.
-		    Fachada facha = (Fachada)Naming.lookup ("//localhost:1099/fachada");
+		    IFachada facha = (IFachada)Naming.lookup ("//localhost:1099/fachada");
 //			facha.nuevoDueño (vod);
 		    
-//		    String apodo = "Rambo"; 
-//		    String raza = "Doberman";
+		    String apodo = "Lobo"; 
+		    String raza = "Husky";
 		    
-//			VOMascota vom = new VOMascota (apodo, raza ,cedula);
-//		    facha.nuevaMascota(vom);
+			VOMascota vom = new VOMascota (apodo, raza ,cedula);
+		    facha.nuevaMascota(vom);
 
 //			List <VOMascota> lm = new LinkedList<VOMascota> ();
 //			lm = facha.listarMascotas (vod);
@@ -38,7 +38,7 @@ public class Pepe {
 //				System.out.print("Datos: " + cedulaDuenio + " - " + apodo + " - " + raza + "\n");
 //				}
 
-			facha.borrarDueñoMascotas (cedula);
+//			facha.borrarDueñoMascotas (cedula);
 		    
 		    
 		  }

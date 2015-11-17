@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import logica.Fachada;
+import logica.IFachada;
 import logica.valueObjects.VODueño;
 
 public class ControlDueños {
@@ -18,7 +18,7 @@ public class ControlDueños {
 		try
 		  {
 			// Invoco a la fachada remota.
-		    Fachada facha = (Fachada)Naming.lookup ("//localhost:1099/fachada");
+		    IFachada facha = (IFachada)Naming.lookup ("//localhost:1099/fachada");
 			listad = facha.listarDueños ();
 		  }
 		  catch (Exception e)
