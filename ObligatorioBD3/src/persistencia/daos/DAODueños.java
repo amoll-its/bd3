@@ -13,6 +13,7 @@ import logica.excepciones.NonexistentEntityException;
 import logica.excepciones.PreexistingEntityException;
 import logica.valueObjects.VODueño;
 import persistencia.consultas.Consultas;
+import poolConexiones.IConexion;
 
 public class DAODueños implements IDAODueños {
 
@@ -27,9 +28,10 @@ public class DAODueños implements IDAODueños {
 		
 	}
 
-	public List<VODueño> listarDueños () {
+	public List<VODueño> listarDueños (IConexion icon) {
 		/* devuelve un lista con todos los dueños */
 
+/*		
 		// Abro la conexión a la BD
 		Connection con = null;
 		AccesoBD abd = new AccesoBD();
@@ -40,12 +42,18 @@ public class DAODueños implements IDAODueños {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
+*/
+		System.out.print(" Bandera 1\n");
+		
+		Connection con = icon.getConnection();
 		
 		List <VODueño> lista = new LinkedList<VODueño> (); 
+		System.out.print(" Bandera 2\n");
 		
 		Consultas cons = new Consultas ();
 		
 		String query = cons.listarDueños();
+		System.out.print(" Bandera 3\n");
 		try {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
@@ -62,15 +70,14 @@ public class DAODueños implements IDAODueños {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		/* cierro la conexión */
+/*
 		try {
 			abd.cierroCon(con);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+*/
 		return lista;
 	}		
 
@@ -196,6 +203,12 @@ public class DAODueños implements IDAODueños {
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public List<VODueño> listarDueños() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

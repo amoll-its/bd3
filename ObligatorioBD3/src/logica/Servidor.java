@@ -14,10 +14,10 @@ public class Servidor {
 		{ // pongo a correr el rmiregistry
 		LocateRegistry.createRegistry(1099);
 		// instancio mi Objeto Remoto y lo publico
-		Fachada fachadaops = new Fachada();
+		Fachada fachada = new Fachada();
 		System.out.println ("Antes de publicarlo");
 		System.out.printf("%s \n", ManagementFactory.getRuntimeMXBean().getName());
-		Naming.rebind("//localhost:1099/fachada", fachadaops);
+		Naming.rebind("//localhost:1099/fachada", fachada);
 		System.out.println ("Luego de publicarlo");
 		}
 		catch (RemoteException e)
