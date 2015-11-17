@@ -14,10 +14,17 @@ import logica.excepciones.PreexistingEntityException;
 import logica.valueObjects.VODueño;
 import persistencia.consultas.Consultas;
 
-public class DAODueños {
+public class DAODueños implements IDAODueños {
 
 	public DAODueños() {
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated method stub
+		
+	}	
+
+	@Override
+	public void DAODueños() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public List<VODueño> listarDueños () {
@@ -190,5 +197,5 @@ public class DAODueños {
 		}
 		
 	}
-	
+
 }
