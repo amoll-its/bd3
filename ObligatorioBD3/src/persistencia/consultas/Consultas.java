@@ -28,4 +28,14 @@ public class Consultas {
 		return query;
 	}
 
+	public String borrarMascotas ()  {
+		String query = "delete from Mascotas where cedulaDuenio = ?";
+		return query;
+	}
+	
+	public String borrarDueño ()  {
+		String query = "delete from Duenios where cedula = ?";
+		return query;
+	}
+	
 }

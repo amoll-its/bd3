@@ -155,5 +155,40 @@ public class DAODueños {
 		return ed;
 		
 	}
+
+	public void delete (int cedula) throws NonexistentEntityException {
+
+		// Abro la conexión a la BD
+		Connection con = null;
+		AccesoBD abd = new AccesoBD();
+		if (con == null)
+		try {
+			con = abd.abroCon();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Consultas cons = new Consultas ();
+		String borrarfila = cons.borrarDueño();
+		try {
+			java.sql.PreparedStatement pstmt = con.prepareStatement(borrarfila);
+			pstmt.setInt(1, cedula);
+			int result=pstmt.executeUpdate();
+			pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		/* cierro la conexión */
+		try {
+			abd.cierroCon(con);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 }

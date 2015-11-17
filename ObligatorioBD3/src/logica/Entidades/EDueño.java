@@ -39,8 +39,7 @@ public class EDueño {
 		List <VOMascota> lista = new LinkedList<VOMascota> ();
 		lista = dmascotas.listarMascotas();
 		
-		return lista;	
-		
+		return lista;			
 		
 	}
 

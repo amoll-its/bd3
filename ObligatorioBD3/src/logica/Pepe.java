@@ -29,15 +29,17 @@ public class Pepe {
 //			VOMascota vom = new VOMascota (apodo, raza ,cedula);
 //		    facha.nuevaMascota(vom);
 
-			List <VOMascota> lm = new LinkedList<VOMascota> ();
-			lm = facha.listarMascotas (vod);
-			for(VOMascota item : lm) {
-				String apodo = item.getApodo ();
-				String raza = item.getRaza ();
-				int cedulaDuenio = item.getCedulaDueño ();
-				System.out.print("Datos: " + cedulaDuenio + " - " + apodo + " - " + raza + "\n");
-				}
+//			List <VOMascota> lm = new LinkedList<VOMascota> ();
+//			lm = facha.listarMascotas (vod);
+//			for(VOMascota item : lm) {
+//				String apodo = item.getApodo ();
+//				String raza = item.getRaza ();
+//				int cedulaDuenio = item.getCedulaDueño ();
+//				System.out.print("Datos: " + cedulaDuenio + " - " + apodo + " - " + raza + "\n");
+//				}
 
+			facha.borrarDueñoMascotas (cedula);
+		    
 		    
 		  }
 		  catch (Exception e)

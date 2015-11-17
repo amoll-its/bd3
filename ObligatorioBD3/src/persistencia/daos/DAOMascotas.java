@@ -88,4 +88,31 @@ public class DAOMascotas {
 			abd.cierroCon(con);
 		return listamas;
 	}
+	
+	public void borrarMascotas() throws SQLException {
+
+		// Abro la conexión a la BD
+		Connection con = null;
+		AccesoBD abd = new AccesoBD();
+		if (con == null)
+		try {
+			con = abd.abroCon();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Consultas cons = new Consultas ();
+		String borrarfilas = cons.borrarMascotas();
+
+		java.sql.PreparedStatement pstmt = con.prepareStatement(borrarfilas);
+		pstmt.setInt (1, cedulaDueño);
+		int result=pstmt.executeUpdate();
+		pstmt.close();
+		
+		/* cierro la conexión */
+		abd.cierroCon(con);		
+		
+	}
+
 }
