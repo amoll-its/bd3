@@ -13,7 +13,8 @@ import logica.valueObjects.VOMascota;
 import persistencia.daos.DAODueños;
 import persistencia.daos.DAOMascotas;
 import poolConexiones.IConexion;
-import poolConexiones.IPoolConexiones;
+import poolConexiones.PoolConexiones;
+
 
 import java.rmi.RemoteException;
 import java.sql.SQLException;
@@ -22,27 +23,27 @@ public class Fachada
   extends java.rmi.server.UnicastRemoteObject
   implements IFachada {
 	
-	private IPoolConexiones pool;
+	//private IPoolConexiones ipool;
+	
 	
 	protected Fachada() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public List <VODueño> listarDueños  () throws RemoteException, PersistenciaException {
+	public List <VODueño> listarDueños  () throws RemoteException, PersistenciaException, ClassNotFoundException {
 
-		System.out.print(" Bandera listar\n");
-		DAODueños ddueños = new DAODueños ();  
-		System.out.print(" Bandera 0\n");
-
-		IConexion icon = pool.obtenerConexion(true); 
-		System.out.print(" Bandera 0.1\n");
 		
+		DAODueños ddueños = new DAODueños ();  
+
+		PoolConexiones ipool= PoolConexiones.getPool();
+		IConexion icon = ipool.obtenerConexion(true);
+			
 		// Cargo la lista de dueños
 		List <VODueño> lista = new LinkedList<VODueño> ();
-		lista = ddueños.listarDueños ();
+		lista = ddueños.listarDueños (icon);
 		
-		pool.liberarConexion(icon, true);
+		ipool.liberarConexion(icon, true);
 		
 		return lista;			
 	}

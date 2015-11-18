@@ -11,7 +11,7 @@ import logica.valueObjects.VOMascota;
 
 public interface IFachada extends java.rmi.Remote {
 	
-	public List <VODueño> listarDueños  () throws RemoteException, PersistenciaException;
+	public List <VODueño> listarDueños  () throws RemoteException, PersistenciaException, ClassNotFoundException;
 
 	public void nuevoDueño (VODueño vod) throws RemoteException, PreexistingEntityException;
 

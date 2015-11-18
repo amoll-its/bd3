@@ -43,17 +43,13 @@ public class DAODueños implements IDAODueños {
 			e.printStackTrace();
 		}		
 */
-		System.out.print(" Bandera 1\n");
-		
+	
 		Connection con = icon.getConnection();
 		
 		List <VODueño> lista = new LinkedList<VODueño> (); 
-		System.out.print(" Bandera 2\n");
-		
 		Consultas cons = new Consultas ();
 		
 		String query = cons.listarDueños();
-		System.out.print(" Bandera 3\n");
 		try {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);

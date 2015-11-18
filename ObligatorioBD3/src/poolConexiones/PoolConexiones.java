@@ -1,4 +1,4 @@
-bpackage poolConexiones;
+package poolConexiones;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,20 +11,21 @@ import java.util.Properties;
 import logica.excepciones.PersistenciaException;
 
 
-public class PoolConexiones implements IPoolConexiones {
+//public class PoolConexiones implements IPoolConexiones {
+public class PoolConexiones{
 	
 	private String driver, url, user, password;
 	private int nivelTransaccionalidad;
-	private Conexion[] conexiones;
+	private IConexion[] conexiones;
 	private int tamanio, creadas, tope;
-
-	public PoolConexiones() throws ClassNotFoundException{
-
+	private static PoolConexiones mipool;//Singleton
+	
+//CAMBIO PARA SINGLETON	public PoolConexiones() throws ClassNotFoundException{
+	private PoolConexiones() throws ClassNotFoundException{
 		try{
 			Properties propiedades = new Properties();
 			propiedades.load(new FileInputStream("conexion.properties"));
 	 
-			/**Obtenemos los parametros definidos en el archivo*/
 			driver = propiedades.getProperty("driver");
 			url = propiedades.getProperty("url");
 			user = propiedades.getProperty("usuario");
@@ -34,8 +35,8 @@ public class PoolConexiones implements IPoolConexiones {
 			creadas=0;
 			tope=0;
 			Class.forName(driver);
-			conexiones = new Conexion[tamanio];
-			
+			conexiones = new IConexion[tamanio];
+		
 		}catch (FileNotFoundException e){ 	
 		   System.out.println("Error, El archivo no exite");
 		}
@@ -44,9 +45,16 @@ public class PoolConexiones implements IPoolConexiones {
 		 }
 	   
 	}
+
+	public static PoolConexiones getPool() throws ClassNotFoundException {
+		if (mipool==null){
+			mipool = new PoolConexiones();
+		}
+		return mipool;
+	}
+	
 	
 	public synchronized IConexion obtenerConexion(boolean mod) throws PersistenciaException {
-		// TODO Auto-generated method stub
 		IConexion conex = null;
 		while (conex==null){
 			if (tope>0){
@@ -95,7 +103,7 @@ public class PoolConexiones implements IPoolConexiones {
 			throw new PersistenciaException ("error al cerrar transacci�n");
 		}
 					
-		conexiones[tope]=(Conexion) con;
+		conexiones[tope]= conex;
 		tope++;	
 		notify();
 	}

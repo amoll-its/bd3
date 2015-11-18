@@ -24,9 +24,9 @@ public class Pepe {
 //			facha.nuevoDueño (vod);
 
 			List <VODueño> ld = new LinkedList<VODueño> ();
-			System.out.print(" Bandera antes\n");
 
 			ld = facha.listarDueños ();
+
 			for(VODueño item : ld) {
 				int cedula = item.getCedula ();
 				String nombre = item.getNombre ();
