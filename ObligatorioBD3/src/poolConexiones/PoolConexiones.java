@@ -1,4 +1,4 @@
-package poolConexiones;
+bpackage poolConexiones;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -72,7 +72,7 @@ public class PoolConexiones implements IPoolConexiones {
 					}
 					catch (InterruptedException e)
 					{
-						throw new PersistenciaException ("error de sincronización");
+						throw new PersistenciaException ("error de sincronizaciï¿½n");
 					}
 		}
 		
@@ -92,7 +92,7 @@ public class PoolConexiones implements IPoolConexiones {
 		}
 		catch (SQLException e)
 		{
-			throw new PersistenciaException ("error al cerrar transacción");
+			throw new PersistenciaException ("error al cerrar transacciï¿½n");
 		}
 					
 		conexiones[tope]=(Conexion) con;
