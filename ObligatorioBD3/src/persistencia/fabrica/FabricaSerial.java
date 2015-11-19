@@ -1,5 +1,9 @@
 package persistencia.fabrica;
 
+import persistencia.daos.DAODueños;
+import persistencia.daos.DAODueñosSerial;
+import persistencia.daos.DAOMascotas;
+import persistencia.daos.DAOMascotasSerial;
 import persistencia.daos.IDAODueños;
 import persistencia.daos.IDAOMascotas;
 
@@ -9,16 +13,13 @@ public class FabricaSerial implements FabricaAbstracta {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public IDAODueños crearDAODueños() {
-		// TODO Auto-generated method stub
-		return null;
+		return new DAODueñosSerial();
 	}
 
 	@Override
 	public IDAOMascotas crearDAOMascotas() {
-		// TODO Auto-generated method stub
-		return null;
+		return new DAOMascotasSerial();
 	}
 
 }
