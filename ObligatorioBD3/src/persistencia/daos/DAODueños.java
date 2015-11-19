@@ -13,6 +13,7 @@ import logica.excepciones.NonexistentEntityException;
 import logica.excepciones.PreexistingEntityException;
 import logica.valueObjects.VODueño;
 import persistencia.consultas.Consultas;
+import poolConexiones.Conexion;
 import poolConexiones.IConexion;
 
 public class DAODueños implements IDAODueños {
@@ -44,7 +45,7 @@ public class DAODueños implements IDAODueños {
 		}		
 */
 	
-		Connection con = icon.getConnection();
+		Connection con = ((Conexion)icon).getConnection();
 		
 		List <VODueño> lista = new LinkedList<VODueño> (); 
 		Consultas cons = new Consultas ();
@@ -92,7 +93,7 @@ public class DAODueños implements IDAODueños {
 		}
 
 */
-		Connection con = icon.getConnection();
+		Connection con = ((Conexion)icon).getConnection();
 		
 		Consultas cons = new Consultas ();
 		String creareg = cons.insertarDueño();
@@ -137,7 +138,7 @@ public class DAODueños implements IDAODueños {
 			e.printStackTrace();
 		}
 */
-		Connection con = icon.getConnection();
+		Connection con = ((Conexion)icon).getConnection();
 		
 		Consultas cons = new Consultas ();
 		String buscad = cons.buscarDueño();
@@ -184,7 +185,7 @@ public class DAODueños implements IDAODueños {
 			e.printStackTrace();
 		}
 */
-		Connection con =icon.getConnection();
+		Connection con =((Conexion)icon).getConnection();
 		
 		Consultas cons = new Consultas ();
 		String borrarfila = cons.borrarDueño();

@@ -92,7 +92,7 @@ public class PoolConexiones implements IPoolConexiones {
 	public synchronized void liberarConexion(IConexion conex, boolean res) throws PersistenciaException {
 		// TODO Auto-generated method stub
 		Connection con;
-		con=conex.getConnection();
+		con=((Conexion) conex).getConnection();
 		try
 		{
 			if (res)

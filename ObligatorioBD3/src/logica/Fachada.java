@@ -12,9 +12,7 @@ import logica.valueObjects.VODueño;
 import logica.valueObjects.VOMascota;
 import persistencia.daos.DAODueños;
 import persistencia.daos.DAOMascotas;
-import poolConexiones.IConexion;
-import poolConexiones.IPoolConexiones;
-import poolConexiones.PoolConexiones;
+import poolConexiones.*;
 
 
 import java.rmi.RemoteException;

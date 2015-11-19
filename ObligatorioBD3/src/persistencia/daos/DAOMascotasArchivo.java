@@ -12,7 +12,6 @@ public class DAOMascotasArchivo implements IDAOMascotas {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public void DAOMascotas(int cedulaDueño, IConexion icon) {
 		// TODO Auto-generated method stub
 		
@@ -32,6 +31,12 @@ public class DAOMascotasArchivo implements IDAOMascotas {
 
 	@Override
 	public void borrarMascotas(IConexion icon) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void DAOMascotas(int cedulaDueño) {
 		// TODO Auto-generated method stub
 		
 	}

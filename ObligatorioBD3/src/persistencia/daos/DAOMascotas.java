@@ -14,6 +14,7 @@ import logica.excepciones.PreexistingEntityException;
 import logica.valueObjects.VODueño;
 import logica.valueObjects.VOMascota;
 import persistencia.consultas.Consultas;
+import poolConexiones.Conexion;
 import poolConexiones.IConexion;
 
 public class DAOMascotas implements IDAOMascotas {
@@ -46,7 +47,7 @@ public class DAOMascotas implements IDAOMascotas {
 			e.printStackTrace();
 		}
 */
-		Connection con = icon.getConnection();
+		Connection con = ((Conexion)icon).getConnection();
 		
 		Consultas cons = new Consultas ();
 		String creareg = cons.insertarMascota();
@@ -75,7 +76,7 @@ public class DAOMascotas implements IDAOMascotas {
 			e.printStackTrace();
 		}
 */
-		Connection con = icon.getConnection();
+		Connection con = ((Conexion)icon).getConnection();
 		
 		List <VOMascota> listamas = new LinkedList<VOMascota> (); 
 		Consultas cons = new Consultas ();
@@ -116,7 +117,7 @@ public class DAOMascotas implements IDAOMascotas {
 			e.printStackTrace();
 		}
 */
-		Connection con = icon.getConnection();
+		Connection con = ((Conexion)icon).getConnection();
 		
 		Consultas cons = new Consultas ();
 		String borrarfilas = cons.borrarMascotas();
