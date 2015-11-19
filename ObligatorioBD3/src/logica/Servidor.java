@@ -8,7 +8,7 @@ import java.rmi.registry.LocateRegistry;
 
 public class Servidor {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException {
 
 		// TODO Auto-generated method stub
 		try

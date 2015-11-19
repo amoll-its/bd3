@@ -13,6 +13,7 @@ import logica.valueObjects.VOMascota;
 import persistencia.daos.DAODueños;
 import persistencia.daos.DAOMascotas;
 import poolConexiones.IConexion;
+import poolConexiones.IPoolConexiones;
 import poolConexiones.PoolConexiones;
 
 
@@ -23,11 +24,13 @@ public class Fachada
   extends java.rmi.server.UnicastRemoteObject
   implements IFachada {
 	
-	//private IPoolConexiones ipool;
+	private IPoolConexiones ipool;
 	
 	
-	protected Fachada() throws RemoteException {
+	protected Fachada() throws RemoteException, ClassNotFoundException {
+
 		super();
+		ipool = new PoolConexiones();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -36,7 +39,7 @@ public class Fachada
 		
 		DAODueños ddueños = new DAODueños ();  
 
-		PoolConexiones ipool= PoolConexiones.getPool();
+//		PoolConexiones ipool= PoolConexiones.getPool();
 		IConexion icon = ipool.obtenerConexion(true);
 			
 		// Cargo la lista de dueños
@@ -54,7 +57,7 @@ public class Fachada
 		String nombre = vod.getNombre();
 		String apellido = vod.getApellido();
 		
-		PoolConexiones ipool= PoolConexiones.getPool();
+//		PoolConexiones ipool= PoolConexiones.getPool();
 		IConexion icon = ipool.obtenerConexion(true);
 		
 		EDueño ed = new EDueño (cedula,nombre,apellido);  		
@@ -71,7 +74,7 @@ public class Fachada
 		String raza = vom.getRaza();
 		int cedula = vom.getCedulaDueño();
 		
-		PoolConexiones ipool= PoolConexiones.getPool();
+//		PoolConexiones ipool= PoolConexiones.getPool();
 		IConexion icon = ipool.obtenerConexion(true);
 		
 		EMascota em = new EMascota (apodo,raza,cedula);  		
@@ -92,7 +95,7 @@ public class Fachada
 
 	public List <VOMascota> listarMascotas (VODueño vod) throws RemoteException, NonexistentEntityException, ClassNotFoundException, PersistenciaException {
 
-		PoolConexiones ipool= PoolConexiones.getPool();
+//		PoolConexiones ipool= PoolConexiones.getPool();
 		IConexion icon = ipool.obtenerConexion(true);
 		
 		int cedula=vod.getCedula();
@@ -116,7 +119,7 @@ public class Fachada
 
 	public void borrarDueñoMascotas (int cedula) throws RemoteException, NonexistentEntityException, ClassNotFoundException, PersistenciaException {
 
-		PoolConexiones ipool= PoolConexiones.getPool();
+//		PoolConexiones ipool= PoolConexiones.getPool();
 		IConexion icon = ipool.obtenerConexion(true);
 		DAODueños ddueños = new DAODueños ();
 
