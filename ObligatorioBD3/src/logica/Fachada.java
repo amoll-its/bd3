@@ -48,71 +48,89 @@ public class Fachada
 		return lista;			
 	}
 
-	public void nuevoDueño (VODueño vod) throws RemoteException, PreexistingEntityException {
+	public void nuevoDueño (VODueño vod) throws RemoteException, PreexistingEntityException, ClassNotFoundException, PersistenciaException {
 
 		int cedula = vod.getCedula();
 		String nombre = vod.getNombre();
 		String apellido = vod.getApellido();
 		
+		PoolConexiones ipool= PoolConexiones.getPool();
+		IConexion icon = ipool.obtenerConexion(true);
+		
 		EDueño ed = new EDueño (cedula,nombre,apellido);  		
 		
 		DAODueños ddueños = new DAODueños ();
-		ddueños.insert (ed);
+		ddueños.insert (ed, icon);
+		ipool.liberarConexion(icon, true);
 				
 	}
 
-	public void nuevaMascota (VOMascota vom) throws RemoteException, NonexistentEntityException {
+	public void nuevaMascota (VOMascota vom) throws RemoteException, NonexistentEntityException, ClassNotFoundException, PersistenciaException {
 
 		String apodo = vom.getApodo();
 		String raza = vom.getRaza();
 		int cedula = vom.getCedulaDueño();
-
+		
+		PoolConexiones ipool= PoolConexiones.getPool();
+		IConexion icon = ipool.obtenerConexion(true);
+		
 		EMascota em = new EMascota (apodo,raza,cedula);  		
 		
 		DAOMascotas dmascotas = new DAOMascotas (cedula);
 		try {
 			dmascotas.insert (em);
-		} catch (SQLException e) {
+			ipool.liberarConexion(icon, true);
+			} catch (SQLException e) {
 //			System.out.print("Algo se rompió!\n");
-            throw new NonexistentEntityException("El usuario no existe.");
+				ipool.liberarConexion(icon, false);
+				throw new NonexistentEntityException("El usuario no existe.");
 		}
+
 
 	}
 
-	public List <VOMascota> listarMascotas (VODueño vod) throws RemoteException, NonexistentEntityException {
+	public List <VOMascota> listarMascotas (VODueño vod) throws RemoteException, NonexistentEntityException, ClassNotFoundException, PersistenciaException {
 
+		PoolConexiones ipool= PoolConexiones.getPool();
+		IConexion icon = ipool.obtenerConexion(true);
+		
 		int cedula=vod.getCedula();
 		DAODueños ddueños = new DAODueños ();
 
 		// Busco al dueño según la cédula
-		EDueño ed = ddueños.find(cedula);
+		EDueño ed = ddueños.find(cedula, icon);
 
 		List <VOMascota> lista = new LinkedList<VOMascota> ();
 		try {
 			lista = ed.listarMascotas();
-		} catch (SQLException e) {
+			ipool.liberarConexion(icon, true);
+			} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+				ipool.liberarConexion(icon, false);
+				e.printStackTrace();
 		}
-		
 		return lista;			
 		
 	}
 
-	public void borrarDueñoMascotas (int cedula) throws RemoteException, NonexistentEntityException {
+	public void borrarDueñoMascotas (int cedula) throws RemoteException, NonexistentEntityException, ClassNotFoundException, PersistenciaException {
 
+		PoolConexiones ipool= PoolConexiones.getPool();
+		IConexion icon = ipool.obtenerConexion(true);
 		DAODueños ddueños = new DAODueños ();
 
 		// Busco al dueño según la cédula
-		EDueño ed = ddueños.find(cedula);
+		EDueño ed = ddueños.find(cedula,icon);
 
 		try {
 			ed.borrarMascotas();
-			ddueños.delete (cedula);			
-		} catch (SQLException e) {
+			ddueños.delete (cedula,icon);			
+			ipool.liberarConexion(icon, true);	
+			} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+			ipool.liberarConexion(icon, false);	
+			}
+
 	}	
 }
