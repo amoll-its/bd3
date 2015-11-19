@@ -76,9 +76,10 @@ public class Fachada
 		
 		EMascota em = new EMascota (apodo,raza,cedula);  		
 		
-		DAOMascotas dmascotas = new DAOMascotas (cedula);
+		DAOMascotas dmascotas=new DAOMascotas(cedula);
+
 		try {
-			dmascotas.insert (em);
+			dmascotas.insert (em,icon);
 			ipool.liberarConexion(icon, true);
 			} catch (SQLException e) {
 //			System.out.print("Algo se rompió!\n");
@@ -102,7 +103,7 @@ public class Fachada
 
 		List <VOMascota> lista = new LinkedList<VOMascota> ();
 		try {
-			lista = ed.listarMascotas();
+			lista = ed.listarMascotas(icon);
 			ipool.liberarConexion(icon, true);
 			} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -123,7 +124,7 @@ public class Fachada
 		EDueño ed = ddueños.find(cedula,icon);
 
 		try {
-			ed.borrarMascotas();
+			ed.borrarMascotas(icon);
 			ddueños.delete (cedula,icon);			
 			ipool.liberarConexion(icon, true);	
 			} catch (SQLException e) {

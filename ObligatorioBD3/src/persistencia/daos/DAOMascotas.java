@@ -20,10 +20,19 @@ public class DAOMascotas implements IDAOMascotas {
 
 	private int cedulaDueño;
 
-	public void DAOMascotas(int cedulaDueño, IConexion icon) {
+
+
+	public DAOMascotas(int cedulaDueño) {
+		// TODO Auto-generated method stub
+		this.cedulaDueño = cedulaDueño;		
+	}
+	
+	@Override
+	public void DAOMascotas(int cedulaDueño) {
 		this.cedulaDueño = cedulaDueño;
 	}
-
+	
+	
 	public void insert (EMascota em, IConexion icon) throws SQLException  {
 
 		// Abro la conexión a la BD
@@ -56,7 +65,7 @@ public class DAOMascotas implements IDAOMascotas {
 	public List<VOMascota> listarMascotas(IConexion icon) throws SQLException {
 
 		// Abro la conexión a la BD
-		Connection con = null;
+/*		Connection con = null;
 		AccesoBD abd = new AccesoBD();
 		if (con == null)
 		try {
@@ -65,7 +74,9 @@ public class DAOMascotas implements IDAOMascotas {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+*/
+		Connection con = icon.getConnection();
+		
 		List <VOMascota> listamas = new LinkedList<VOMascota> (); 
 		Consultas cons = new Consultas ();
 		String query = cons.listarMascotas();
@@ -88,14 +99,14 @@ public class DAOMascotas implements IDAOMascotas {
 		}
 
 		/* cierro la conexión */
-			abd.cierroCon(con);
+		//	abd.cierroCon(con);
 		return listamas;
 	}
 	
 	public void borrarMascotas(IConexion icon) throws SQLException {
 
 		// Abro la conexión a la BD
-		Connection con = null;
+/*		Connection con = null;
 		AccesoBD abd = new AccesoBD();
 		if (con == null)
 		try {
@@ -104,7 +115,9 @@ public class DAOMascotas implements IDAOMascotas {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+*/
+		Connection con = icon.getConnection();
+		
 		Consultas cons = new Consultas ();
 		String borrarfilas = cons.borrarMascotas();
 
@@ -114,7 +127,7 @@ public class DAOMascotas implements IDAOMascotas {
 		pstmt.close();
 		
 		/* cierro la conexión */
-		abd.cierroCon(con);		
+		//abd.cierroCon(con);		
 		
 	}
 

@@ -8,6 +8,7 @@ import logica.valueObjects.VODueño;
 import logica.valueObjects.VOMascota;
 import persistencia.daos.DAODueños;
 import persistencia.daos.DAOMascotas;
+import poolConexiones.IConexion;
 
 public class EDueño {
 
@@ -33,19 +34,19 @@ public class EDueño {
 		return apellido;
 	}
 
-	public List<VOMascota> listarMascotas() throws SQLException {
+	public List<VOMascota> listarMascotas(IConexion icon) throws SQLException {
 
 		DAOMascotas dmascotas = new DAOMascotas (cedula);
 		List <VOMascota> lista = new LinkedList<VOMascota> ();
-		lista = dmascotas.listarMascotas();
+		lista = dmascotas.listarMascotas(icon);
 		
 		return lista;			
 		
 	}
 
-	public void borrarMascotas() throws SQLException {
+	public void borrarMascotas(IConexion icon) throws SQLException {
 		DAOMascotas dmascotas = new DAOMascotas (cedula);
-		dmascotas.borrarMascotas();
+		dmascotas.borrarMascotas(icon);
 	}
 	
 }
