@@ -16,11 +16,11 @@ import logica.valueObjects.VOMascota;
 import persistencia.consultas.Consultas;
 import poolConexiones.IConexion;
 
-public class DAOMascotas {
+public class DAOMascotas implements IDAOMascotas {
 
 	private int cedulaDueño;
 
-	public DAOMascotas(int cedulaDueño) {
+	public void DAOMascotas(int cedulaDueño, IConexion icon) {
 		this.cedulaDueño = cedulaDueño;
 	}
 
