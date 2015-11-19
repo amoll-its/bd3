@@ -14,6 +14,7 @@ import logica.excepciones.PreexistingEntityException;
 import logica.valueObjects.VODueño;
 import logica.valueObjects.VOMascota;
 import persistencia.consultas.Consultas;
+import poolConexiones.IConexion;
 
 public class DAOMascotas {
 
@@ -23,10 +24,10 @@ public class DAOMascotas {
 		this.cedulaDueño = cedulaDueño;
 	}
 
-	public void insert (EMascota em) throws SQLException  {
+	public void insert (EMascota em, IConexion icon) throws SQLException  {
 
 		// Abro la conexión a la BD
-		Connection con = null;
+/*		Connection con = null;
 		AccesoBD abd = new AccesoBD();
 		if (con == null)
 		try {
@@ -35,7 +36,9 @@ public class DAOMascotas {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+*/
+		Connection con = icon.getConnection();
+		
 		Consultas cons = new Consultas ();
 		String creareg = cons.insertarMascota();
 			java.sql.PreparedStatement pstmt = con.prepareStatement(creareg);
@@ -46,11 +49,11 @@ public class DAOMascotas {
 			pstmt.close();
 
 		/* cierro la conexión */
-			abd.cierroCon(con);
+//			abd.cierroCon(con);
 		
 	}
 	
-	public List<VOMascota> listarMascotas() throws SQLException {
+	public List<VOMascota> listarMascotas(IConexion icon) throws SQLException {
 
 		// Abro la conexión a la BD
 		Connection con = null;
@@ -89,7 +92,7 @@ public class DAOMascotas {
 		return listamas;
 	}
 	
-	public void borrarMascotas() throws SQLException {
+	public void borrarMascotas(IConexion icon) throws SQLException {
 
 		// Abro la conexión a la BD
 		Connection con = null;

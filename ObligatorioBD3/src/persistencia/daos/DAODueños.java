@@ -77,11 +77,11 @@ public class DAODueños implements IDAODueños {
 		return lista;
 	}		
 
-	public void insert (EDueño ed) throws PreexistingEntityException {
+	public void insert (EDueño ed, IConexion icon) throws PreexistingEntityException {
 		/* inserta un nuevo dueño en la base de datos */
 
 		// Abro la conexión a la BD
-		Connection con = null;
+/*		Connection con = null;
 		AccesoBD abd = new AccesoBD();
 		if (con == null)
 		try {
@@ -91,6 +91,9 @@ public class DAODueños implements IDAODueños {
 			e.printStackTrace();
 		}
 
+*/
+		Connection con = icon.getConnection();
+		
 		Consultas cons = new Consultas ();
 		String creareg = cons.insertarDueño();
 		try {
@@ -106,17 +109,17 @@ public class DAODueños implements IDAODueños {
 		}
 
 		/* cierro la conexión */
-		try {
+		/*try {
 			abd.cierroCon(con);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+*/
 		
 	}
 
-	public EDueño find (int ced) throws NonexistentEntityException {
+	public EDueño find (int ced, IConexion icon) throws NonexistentEntityException {
 		/* Busca un dueño a partir de su cédula */
 
 		int cedula = 0;
@@ -124,7 +127,7 @@ public class DAODueños implements IDAODueños {
 		String apellido = ""; 		
 		
 		// Abro la conexión a la BD
-		Connection con = null;
+/*		Connection con = null;
 		AccesoBD abd = new AccesoBD();
 		if (con == null)
 		try {
@@ -133,7 +136,9 @@ public class DAODueños implements IDAODueños {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+*/
+		Connection con = icon.getConnection();
+		
 		Consultas cons = new Consultas ();
 		String buscad = cons.buscarDueño();
 		try {
@@ -154,22 +159,22 @@ public class DAODueños implements IDAODueños {
 		}
 
 		/* cierro la conexión */
-		try {
+/*		try {
 			abd.cierroCon(con);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+*/
 		EDueño ed = new EDueño(cedula,nombre,apellido);	
 		return ed;
 		
 	}
 
-	public void delete (int cedula) throws NonexistentEntityException {
+	public void delete (int cedula, IConexion icon) throws NonexistentEntityException {
 
 		// Abro la conexión a la BD
-		Connection con = null;
+/*		Connection con = null;
 		AccesoBD abd = new AccesoBD();
 		if (con == null)
 		try {
@@ -178,6 +183,8 @@ public class DAODueños implements IDAODueños {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+*/
+		Connection con =icon.getConnection();
 		
 		Consultas cons = new Consultas ();
 		String borrarfila = cons.borrarDueño();
@@ -192,19 +199,14 @@ public class DAODueños implements IDAODueños {
 		}
 		
 		/* cierro la conexión */
-		try {
+/*		try {
 			abd.cierroCon(con);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+*/		
 	}
 
-	@Override
-	public List<VODueño> listarDueños() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
