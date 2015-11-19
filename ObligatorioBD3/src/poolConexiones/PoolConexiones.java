@@ -11,8 +11,8 @@ import java.util.Properties;
 import logica.excepciones.PersistenciaException;
 
 
-//public class PoolConexiones implements IPoolConexiones {
-public class PoolConexiones{
+public class PoolConexiones implements IPoolConexiones {
+//public class PoolConexiones{
 	
 	private String driver, url, user, password;
 	private int nivelTransaccionalidad;
@@ -83,7 +83,9 @@ public class PoolConexiones{
 						throw new PersistenciaException ("error de sincronizaci�n");
 					}
 		}
-		
+		System.out.print("Tamaño: " + tamanio +"\n");
+		System.out.print("Creadas: " + creadas +"\n");
+		System.out.print("Tope: " + tope +"\n");
 		return conex;
 	}
 
@@ -103,9 +105,13 @@ public class PoolConexiones{
 			throw new PersistenciaException ("error al cerrar transacci�n");
 		}
 					
-		conexiones[tope]= conex;
-		tope++;	
+		tope++;
+		conexiones[tope-1]= conex;
 		notify();
+		System.out.print("Tamaño: " + tamanio +"\n");
+		System.out.print("Creadas: " + creadas +"\n");
+		System.out.print("Tope: " + tope +"\n");
 	}
+
 
 }
