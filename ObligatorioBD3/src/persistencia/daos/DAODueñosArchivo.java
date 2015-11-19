@@ -1,5 +1,12 @@
 package persistencia.daos;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import logica.Entidades.EDueño;
@@ -10,6 +17,8 @@ import poolConexiones.IConexion;
 
 public class DAODueñosArchivo implements IDAODueños {
 
+	final static Charset ENCODING = StandardCharsets.UTF_8;
+	  
 	public DAODueñosArchivo() {
 		// TODO Auto-generated constructor stub
 	}
@@ -22,7 +31,26 @@ public class DAODueñosArchivo implements IDAODueños {
 
 	@Override
 	public List<VODueño> listarDueños(IConexion con) {
-		// TODO Auto-generated method stub
+
+		List<String> contenido = null;
+		
+		File folder = new File("/home/amoll/1/");
+		File[] listOfFiles = folder.listFiles();
+
+		for (File file : listOfFiles) {
+			if (file.isFile()) {
+
+				System.out.println(file.getName());
+			    Path path = Paths.get(file.getName());
+			    try {
+					contenido = Files.readAllLines(path, ENCODING);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}		
+				
+			}
+		}
 		return null;
 	}
 
