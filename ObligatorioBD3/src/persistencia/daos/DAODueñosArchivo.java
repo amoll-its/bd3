@@ -8,9 +8,9 @@ import logica.excepciones.PreexistingEntityException;
 import logica.valueObjects.VODueño;
 import poolConexiones.IConexion;
 
-public class DAODueñosSerial implements IDAODueños {
+public class DAODueñosArchivo implements IDAODueños {
 
-	public DAODueñosSerial() {
+	public DAODueñosArchivo() {
 		// TODO Auto-generated constructor stub
 	}
 

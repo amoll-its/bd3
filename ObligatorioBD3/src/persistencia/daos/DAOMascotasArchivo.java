@@ -6,9 +6,9 @@ import logica.Entidades.EMascota;
 import logica.valueObjects.VOMascota;
 import poolConexiones.IConexion;
 
-public class DAOMascotasSerial implements IDAOMascotas {
+public class DAOMascotasArchivo implements IDAOMascotas {
 
-	public DAOMascotasSerial() {
+	public DAOMascotasArchivo() {
 		// TODO Auto-generated constructor stub
 	}
 
