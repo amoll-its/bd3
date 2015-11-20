@@ -67,7 +67,7 @@ public class DAODueñosArchivo implements IDAODueños {
 	@Override
 	public void insert(EDueño ed, IConexion con) throws PreexistingEntityException {
 
-		List<String> contenido = null;
+		List<String> contenido = new LinkedList<String> ();
 
 		contenido.add(Integer.toString(ed.getCedula()));
 		contenido.add(ed.getNombre());
@@ -75,7 +75,7 @@ public class DAODueñosArchivo implements IDAODueños {
 
 		File folder = new File("/home/amoll/1/");
 		String nomarch = Integer.toString(ed.getCedula());
-		Path path = Paths.get(folder + "/" + nomarch);
+		Path path = Paths.get(folder + "/" + "duenio-" + nomarch + ".txt");
 		
 		try {
 			Files.write(path, contenido, ENCODING);
