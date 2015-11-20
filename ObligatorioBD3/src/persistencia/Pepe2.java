@@ -9,28 +9,34 @@ import persistencia.daos.DAODueños;
 import persistencia.daos.DAODueñosArchivo;
 import persistencia.daos.IDAODueños;
 import poolConexiones.IConexion;
+import poolConexiones.IPoolConexiones;
 import poolConexiones.PoolConexiones;
 
 public class Pepe2 {
 
-	public static void main(String[] args) throws PersistenciaException {
+	public static void main(String[] args) throws PersistenciaException, ClassNotFoundException {
+
+		IPoolConexiones ipool;
 		
-		IConexion icon = null;
+		ipool = (IPoolConexiones) new PoolConexiones();
+		
+		IConexion icon = ipool.obtenerConexion(true);
+
 		IDAODueños ddueños = new DAODueñosArchivo ();  
 
-		PoolConexiones ipool;
-		try {
-			ipool = PoolConexiones.getPool();
-			icon = ipool.obtenerConexion(true);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		icon = ipool.obtenerConexion(true);
 			
 		// Cargo la lista de dueños
-		List <VODueño> lista = new LinkedList<VODueño> ();
-//		lista = ddueños.listarDueños (icon);
-		ddueños.listarDueños (icon);
+		List <VODueño> ld = new LinkedList<VODueño> ();
+		ld = ddueños.listarDueños (icon);
+
+		for(VODueño item : ld) {
+			int cedula = item.getCedula ();
+			String nombre = item.getNombre ();
+			String apellido = item.getApellido ();
+			System.out.print("Datos: " + cedula + " - " + nombre + " - " + apellido + "\n");
+			}
+		
 		
 //		ipool.liberarConexion(icon, true);
 		
