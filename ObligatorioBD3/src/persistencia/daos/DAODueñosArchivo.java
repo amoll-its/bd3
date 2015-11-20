@@ -24,12 +24,6 @@ public class DAODueñosArchivo implements IDAODueños {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void DAODueños() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public List<VODueño> listarDueños(IConexion con) {
 
 		List<String> contenido = null;
@@ -78,6 +72,12 @@ public class DAODueñosArchivo implements IDAODueños {
 
 	@Override
 	public void delete(int cedula, IConexion con) throws NonexistentEntityException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void DAODueños() {
 		// TODO Auto-generated method stub
 		
 	}

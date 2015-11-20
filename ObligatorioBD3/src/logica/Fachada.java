@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.LinkedList;
+
 import java.util.List;
 
 import logica.Entidades.EDueño;
@@ -12,8 +13,9 @@ import logica.valueObjects.VODueño;
 import logica.valueObjects.VOMascota;
 import persistencia.daos.DAODueños;
 import persistencia.daos.DAOMascotas;
+import persistencia.daos.IDAODueños;
 import poolConexiones.*;
-
+import persistencia.fabrica.FabricaAbstracta;
 
 import java.rmi.RemoteException;
 import java.sql.SQLException;
@@ -23,12 +25,17 @@ public class Fachada
   implements IFachada {
 	
 	private IPoolConexiones ipool;
-	
+	private FabricaAbstracta fabrica;
 	
 	protected Fachada() throws RemoteException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
 		super();
 		ipool = (IPoolConexiones) new PoolConexiones();
+
+		CargoFabrica cfab = new CargoFabrica ();
+		String nomFab = cfab.nombre();
+		fabrica = (FabricaAbstracta) Class.forName(nomFab).newInstance();
+
 		//String poolConcreto="PoolConexiones";
 		//ipool = (IPoolConexiones) Class.forName(poolConcreto).newInstance();
 		// TODO Auto-generated constructor stub
@@ -37,8 +44,9 @@ public class Fachada
 	public List <VODueño> listarDueños  () throws RemoteException, PersistenciaException {
 
 		
-		DAODueños ddueños = new DAODueños ();  
-
+//		DAODueños ddueños = new DAODueños ();
+		IDAODueños ddueños = fabrica.crearDAODueños();
+		
 		IConexion icon = ipool.obtenerConexion(true);
 			
 		// Cargo la lista de dueños
@@ -76,7 +84,7 @@ public class Fachada
 		
 		EMascota em = new EMascota (apodo,raza,cedula);  		
 		
-		DAOMascotas dmascotas=new DAOMascotas(cedula);
+		DAOMascotas dmascotas= new DAOMascotas(cedula);
 
 		try {
 			dmascotas.insert (em,icon);

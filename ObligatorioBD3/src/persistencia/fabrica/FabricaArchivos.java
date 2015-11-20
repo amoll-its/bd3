@@ -18,8 +18,8 @@ public class FabricaArchivos implements FabricaAbstracta {
 	}
 
 	@Override
-	public IDAOMascotas crearDAOMascotas() {
-		return new DAOMascotasArchivo();
+	public IDAOMascotas crearDAOMascotas(int cedulaDueño) {
+		return new DAOMascotasArchivo(cedulaDueño);
 	}
 
 }

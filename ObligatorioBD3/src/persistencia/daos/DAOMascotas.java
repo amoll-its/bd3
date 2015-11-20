@@ -21,18 +21,13 @@ public class DAOMascotas implements IDAOMascotas {
 
 	private int cedulaDueño;
 
-
-
-	public DAOMascotas(int cedulaDueño) {
-		// TODO Auto-generated method stub
-		this.cedulaDueño = cedulaDueño;		
+	public DAOMascotas(int cedula) {
+		this.cedulaDueño = cedula;
 	}
 	
-	@Override
-	public void DAOMascotas(int cedulaDueño) {
-		this.cedulaDueño = cedulaDueño;
+	public void DAOMascotas(int cedula) {
+		this.cedulaDueño = cedula;
 	}
-	
 	
 	public void insert (EMascota em, IConexion icon) throws SQLException  {
 
@@ -131,5 +126,4 @@ public class DAOMascotas implements IDAOMascotas {
 		//abd.cierroCon(con);		
 		
 	}
-
 }

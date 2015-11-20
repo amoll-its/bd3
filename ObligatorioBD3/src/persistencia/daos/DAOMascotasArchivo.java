@@ -8,16 +8,16 @@ import poolConexiones.IConexion;
 
 public class DAOMascotasArchivo implements IDAOMascotas {
 
-	public DAOMascotasArchivo() {
-		// TODO Auto-generated constructor stub
+	private int cedulaDueño;
+
+	public DAOMascotasArchivo(int cedula) {
+		this.cedulaDueño = cedula;
 	}
 
-	public void DAOMascotas(int cedulaDueño, IConexion icon) {
-		// TODO Auto-generated method stub
-		
+	public void DAOMascotas(int cedula) {
+		this.cedulaDueño = cedula;
 	}
 
-	@Override
 	public void insert(EMascota em, IConexion icon) {
 		// TODO Auto-generated method stub
 		
@@ -31,12 +31,6 @@ public class DAOMascotasArchivo implements IDAOMascotas {
 
 	@Override
 	public void borrarMascotas(IConexion icon) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void DAOMascotas(int cedulaDueño) {
 		// TODO Auto-generated method stub
 		
 	}

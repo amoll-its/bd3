@@ -7,6 +7,6 @@ public interface FabricaAbstracta {
 
 	public IDAODueños crearDAODueños();
 	
-	public IDAOMascotas crearDAOMascotas();
+	public IDAOMascotas crearDAOMascotas(int cedulaDueño);
 	
 }

@@ -15,8 +15,8 @@ public class FabricaSQL implements FabricaAbstracta {
 		return new DAODueños();
 	}
 
-	public IDAOMascotas crearDAOMascotas() {
-		return new DAOMascotas();
+	public IDAOMascotas crearDAOMascotas(int cedulaDueño) {
+		return new DAOMascotas(cedulaDueño);
 	}	
 	
 }
