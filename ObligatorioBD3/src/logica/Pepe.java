@@ -14,15 +14,16 @@ public class Pepe {
 		// TODO Auto-generated method stub HUMBERTO SANTANA - ppp
 		try
 		  {
-//			int cedula = 1234567;
-//			String nombre = "Juan";
-//			String apellido = "Perez";
+			int cedula1 = 1111111;
+			String nombre1 = "Juan";
+			String apellido1 = "Perez";
 			
-//			VODueño vod = new VODueño (cedula, nombre, apellido);
+			VODueño vod = new VODueño (cedula1, nombre1, apellido1);
+
 			
 			// Invoco a la fachada remota.
 		    IFachada facha = (IFachada)Naming.lookup ("//localhost:1099/fachada");
-//			facha.nuevoDueño (vod);
+			facha.nuevoDueño (vod);
 
 			List <VODueño> ld = new LinkedList<VODueño> ();
 
@@ -35,21 +36,34 @@ public class Pepe {
 				System.out.print("Datos: " + cedula + " - " + nombre + " - " + apellido + "\n");
 				}
 		    
-		    
-//		    String apodo = "Lobo"; 
-//		    String raza = "Husky";
-		    
-//			VOMascota vom = new VOMascota (apodo, raza ,cedula);
-//		    facha.nuevaMascota(vom);
+			facha.borrarDueñoMascotas(cedula1);
+			System.out.print("----------------\n");
+			ld = facha.listarDueños ();
 
-//			List <VOMascota> lm = new LinkedList<VOMascota> ();
-//			lm = facha.listarMascotas (vod);
-//			for(VOMascota item : lm) {
-//				String apodo = item.getApodo ();
-//				String raza = item.getRaza ();
-//				int cedulaDuenio = item.getCedulaDueño ();
-//				System.out.print("Datos: " + cedulaDuenio + " - " + apodo + " - " + raza + "\n");
-//				}
+			for(VODueño item : ld) {
+				int cedula = item.getCedula ();
+				String nombre = item.getNombre ();
+				String apellido = item.getApellido ();
+				System.out.print("Datos: " + cedula + " - " + nombre + " - " + apellido + "\n");
+				}
+		    
+			System.out.print("----------------\n");
+			String apodo = "Lobo2"; 
+		    String raza = "Husky2";
+		    cedula1=1234567;
+		    
+			VOMascota vom = new VOMascota (apodo, raza ,cedula1);
+		    facha.nuevaMascota(vom);
+
+			VODueño vod1 = new VODueño (1234567, "Jimi", "Hendrix");
+			List <VOMascota> lm = new LinkedList<VOMascota> ();
+			lm = facha.listarMascotas (vod1);
+			for(VOMascota item : lm) {
+				apodo = item.getApodo ();
+				raza = item.getRaza ();
+				int cedulaDuenio = item.getCedulaDueño ();
+				System.out.print("Datos: " + cedulaDuenio + " - " + apodo + " - " + raza + "\n");
+				}
 
 //			facha.borrarDueñoMascotas (cedula);
 		    

@@ -25,19 +25,20 @@ public class Fachada
 	private IPoolConexiones ipool;
 	
 	
-	protected Fachada() throws RemoteException, ClassNotFoundException {
+	protected Fachada() throws RemoteException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
 		super();
-		ipool = new PoolConexiones();
+		ipool = (IPoolConexiones) new PoolConexiones();
+		//String poolConcreto="PoolConexiones";
+		//ipool = (IPoolConexiones) Class.forName(poolConcreto).newInstance();
 		// TODO Auto-generated constructor stub
 	}
 
-	public List <VODueño> listarDueños  () throws RemoteException, PersistenciaException, ClassNotFoundException {
+	public List <VODueño> listarDueños  () throws RemoteException, PersistenciaException {
 
 		
 		DAODueños ddueños = new DAODueños ();  
 
-//		PoolConexiones ipool= PoolConexiones.getPool();
 		IConexion icon = ipool.obtenerConexion(true);
 			
 		// Cargo la lista de dueños
@@ -55,7 +56,6 @@ public class Fachada
 		String nombre = vod.getNombre();
 		String apellido = vod.getApellido();
 		
-//		PoolConexiones ipool= PoolConexiones.getPool();
 		IConexion icon = ipool.obtenerConexion(true);
 		
 		EDueño ed = new EDueño (cedula,nombre,apellido);  		
@@ -72,7 +72,6 @@ public class Fachada
 		String raza = vom.getRaza();
 		int cedula = vom.getCedulaDueño();
 		
-//		PoolConexiones ipool= PoolConexiones.getPool();
 		IConexion icon = ipool.obtenerConexion(true);
 		
 		EMascota em = new EMascota (apodo,raza,cedula);  		
@@ -93,7 +92,6 @@ public class Fachada
 
 	public List <VOMascota> listarMascotas (VODueño vod) throws RemoteException, NonexistentEntityException, ClassNotFoundException, PersistenciaException {
 
-//		PoolConexiones ipool= PoolConexiones.getPool();
 		IConexion icon = ipool.obtenerConexion(true);
 		
 		int cedula=vod.getCedula();
@@ -117,7 +115,6 @@ public class Fachada
 
 	public void borrarDueñoMascotas (int cedula) throws RemoteException, NonexistentEntityException, ClassNotFoundException, PersistenciaException {
 
-//		PoolConexiones ipool= PoolConexiones.getPool();
 		IConexion icon = ipool.obtenerConexion(true);
 		DAODueños ddueños = new DAODueños ();
 
