@@ -24,6 +24,12 @@ public class DAODueñosArchivo implements IDAODueños {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public void DAODueños() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public List<VODueño> listarDueños(IConexion con) {
 
 		List<String> contenido = null;
@@ -60,24 +66,51 @@ public class DAODueñosArchivo implements IDAODueños {
 
 	@Override
 	public void insert(EDueño ed, IConexion con) throws PreexistingEntityException {
-		// TODO Auto-generated method stub
+
+		List<String> contenido = null;
+
+		contenido.add(Integer.toString(ed.getCedula()));
+		contenido.add(ed.getNombre());
+		contenido.add(ed.getApellido());
+
+		File folder = new File("/home/amoll/1/");
+		String nomarch = Integer.toString(ed.getCedula());
+		Path path = Paths.get(folder + "/" + nomarch);
+		
+		try {
+			Files.write(path, contenido, ENCODING);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
-	@Override
 	public EDueño find(int ced, IConexion con) throws NonexistentEntityException {
-		// TODO Auto-generated method stub
-		return null;
+
+		int cedula = 0;
+		String nombre = "";
+		String apellido = ""; 		
+		List<String> contenido = null;
+
+		// intento cargar el archivo correspondiente al dueño.
+		File folder = new File("/home/amoll/1/");
+		String nomarch = Integer.toString(ced);
+		Path path = Paths.get(folder + "/" + "duenio-" + nomarch + ".txt");
+		try {
+			contenido = Files.readAllLines(path, ENCODING);
+			cedula = Integer.parseInt(contenido.get(0));
+			nombre = contenido.get(1);
+			apellido = contenido.get(2); 
+		} catch (IOException e) {
+			throw new NonexistentEntityException ("No se encuentra el registro");
+		}		
+		EDueño ed = new EDueño(cedula,nombre,apellido);	
+		return ed;
 	}
 
 	@Override
 	public void delete(int cedula, IConexion con) throws NonexistentEntityException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void DAODueños() {
 		// TODO Auto-generated method stub
 		
 	}
