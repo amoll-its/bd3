@@ -12,7 +12,9 @@ public class PepePool {
 
 	public static void main(String[] args) throws ClassNotFoundException, PersistenciaException {
 		// TODO Auto-generated method stub 
-		PoolConexiones ipool= PoolConexiones.getPool();
+//		PoolConexiones ipool= PoolConexiones.getPool();
+		PoolConexiones ipool = null;
+		
 		System.out.print("Conexion 1*******************\n");
 		IConexion icon1 = ipool.obtenerConexion(true);
 		System.out.print("Conexion 2*******************\n");
