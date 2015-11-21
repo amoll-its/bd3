@@ -55,9 +55,9 @@ public class Pepe {
 			VOMascota vom = new VOMascota (apodo, raza ,cedula1);
 		    facha.nuevaMascota(vom);
 
-			VODueño vod1 = new VODueño (1234567, "Jimi", "Hendrix");
+			//VODueño vod1 = new VODueño (1234567, "Jimi", "Hendrix");
 			List <VOMascota> lm = new LinkedList<VOMascota> ();
-			lm = facha.listarMascotas (vod1);
+			lm = facha.listarMascotas (1234567);
 			for(VOMascota item : lm) {
 				apodo = item.getApodo ();
 				raza = item.getRaza ();

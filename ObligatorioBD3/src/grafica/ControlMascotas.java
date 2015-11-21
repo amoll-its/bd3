@@ -9,45 +9,31 @@ import java.util.LinkedList;
 import java.util.List;
 
 import logica.IFachada;
-import logica.valueObjects.VODueño;
+import logica.valueObjects.VOMascota;
 
-public class ControlDueños {
+public class ControlMascotas {
 
-	public List<VODueño> listarDueños() {
-		List <VODueño> listad = new LinkedList<VODueño> ();
+	public List<VOMascota> listarMascotas(int cd) {
+		List <VOMascota> listam = new LinkedList<VOMascota> ();
 		try
 		  {
 			// Invoco a la fachada remota.
 		    IFachada facha = (IFachada)Naming.lookup ("//localhost:1099/fachada");
-			listad = facha.listarDueños ();
+			listam = facha.listarMascotas (cd);
 		  }
 		  catch (Exception e)
 		  {
 		    e.printStackTrace();
 		  }		
-		return listad;
+		return listam;
 	}
 
-	public void nuevoDueño( VODueño vod) {
+	public void nuevaMascota( VOMascota vom) {
 		try
 		  {
 			// Invoco a la fachada remota.
 		    IFachada facha = (IFachada)Naming.lookup ("//localhost:1099/fachada");
-			facha.nuevoDueño (vod);
-		  }
-		  catch (Exception e)
-		  {
-		    e.printStackTrace();
-		  }		
-
-	}
-
-	public void borrarDueñoMascotas( int cd) {
-		try
-		  {
-			// Invoco a la fachada remota.
-		    IFachada facha = (IFachada)Naming.lookup ("//localhost:1099/fachada");
-			facha.borrarDueñoMascotas (cd);
+			facha.nuevaMascota (vom);
 		  }
 		  catch (Exception e)
 		  {
@@ -55,5 +41,7 @@ public class ControlDueños {
 		  }		
 
 	}
+
+
 	
 }

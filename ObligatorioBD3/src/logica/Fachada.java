@@ -98,15 +98,17 @@ public class Fachada
 
 	}
 
-	public List <VOMascota> listarMascotas (VODueño vod) throws RemoteException, NonexistentEntityException, ClassNotFoundException, PersistenciaException {
+//	public List <VOMascota> listarMascotas (VODueño vod) throws RemoteException, NonexistentEntityException, ClassNotFoundException, PersistenciaException {
+	//En el practico 4 dice que a listarMascotas se le pasa la CEDULA no un VODueño
+	public List <VOMascota> listarMascotas (int cd) throws RemoteException, NonexistentEntityException, ClassNotFoundException, PersistenciaException {
 
 		IConexion icon = ipool.obtenerConexion(true);
 		
-		int cedula=vod.getCedula();
+		//int cedula=vod.getCedula();
 		DAODueños ddueños = new DAODueños ();
 
 		// Busco al dueño según la cédula
-		EDueño ed = ddueños.find(cedula, icon);
+		EDueño ed = ddueños.find(cd, icon);
 
 		List <VOMascota> lista = new LinkedList<VOMascota> ();
 		try {

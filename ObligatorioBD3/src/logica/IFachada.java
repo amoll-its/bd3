@@ -17,7 +17,7 @@ public interface IFachada extends java.rmi.Remote {
 
 	public void nuevaMascota (VOMascota vom) throws RemoteException, NonexistentEntityException, ClassNotFoundException, PersistenciaException ;
 
-	public List <VOMascota> listarMascotas (VODueño vod) throws RemoteException, NonexistentEntityException, ClassNotFoundException, PersistenciaException;
+	public List <VOMascota> listarMascotas (int cd) throws RemoteException, NonexistentEntityException, ClassNotFoundException, PersistenciaException;
 
 	public void borrarDueñoMascotas (int cedula) throws RemoteException, NonexistentEntityException, ClassNotFoundException, PersistenciaException;
 	
