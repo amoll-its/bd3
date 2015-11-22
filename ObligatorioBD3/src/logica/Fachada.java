@@ -3,6 +3,7 @@ package logica;
 import java.util.LinkedList;
 
 import java.util.List;
+import java.util.Properties;
 
 import logica.Entidades.EDueño;
 import logica.Entidades.EMascota;
@@ -17,6 +18,9 @@ import persistencia.daos.IDAODueños;
 import poolConexiones.*;
 import persistencia.fabrica.FabricaAbstracta;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 
@@ -30,15 +34,25 @@ public class Fachada
 	protected Fachada() throws RemoteException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
 		super();
-		ipool = (IPoolConexiones) new PoolConexiones();
 
-		CargoFabrica cfab = new CargoFabrica ();
-		String nomFab = cfab.nombre();
+		String nomFab = null;
+		String nomPool = null;
+
+		try{
+			Properties propiedades = new Properties();
+			propiedades.load(new FileInputStream("server.properties"));
+			nomFab = propiedades.getProperty("fabrica");
+			nomPool = propiedades.getProperty("pool"); 
+		}catch (FileNotFoundException e){ 	
+		   System.out.println("Error, el archivo de configuración no existe!");
+		}
+		 catch (IOException e){ 
+		   System.out.println("Error, no se puede leer el archivo de configuración!");
+		 }
+
+		ipool = (IPoolConexiones) Class.forName(nomPool).newInstance();
 		fabrica = (FabricaAbstracta) Class.forName(nomFab).newInstance();
 
-		//String poolConcreto="PoolConexiones";
-		//ipool = (IPoolConexiones) Class.forName(poolConcreto).newInstance();
-		// TODO Auto-generated constructor stub
 	}
 
 	public List <VODueño> listarDueños  () throws RemoteException, PersistenciaException {

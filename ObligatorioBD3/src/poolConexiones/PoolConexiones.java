@@ -24,7 +24,7 @@ public class PoolConexiones implements IPoolConexiones {
 	public PoolConexiones() throws ClassNotFoundException{
 		try{
 			Properties propiedades = new Properties();
-			propiedades.load(new FileInputStream("conexion.properties"));
+			propiedades.load(new FileInputStream("server.properties"));
 	 
 			driver = propiedades.getProperty("driver");
 			url = propiedades.getProperty("url");
@@ -38,10 +38,10 @@ public class PoolConexiones implements IPoolConexiones {
 			conexiones = new IConexion[tamanio];
 		
 		}catch (FileNotFoundException e){ 	
-		   System.out.println("Error, El archivo no exite");
+		   System.out.println("Error, El archivo no existe!");
 		}
 		 catch (IOException e){ 
-		   System.out.println("Error, No se puede leer el archivo");
+		   System.out.println("Error, No se puede leer el archivo!");
 		 }
 	   
 	}
