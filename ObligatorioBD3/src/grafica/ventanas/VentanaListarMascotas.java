@@ -59,13 +59,13 @@ public class VentanaListarMascotas {
 		btnListar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				int cedula = Integer.parseInt(txtCedula.getText());
-				DefaultListModel mlist = new DefaultListModel();
-
+				DefaultListModel mlist;
 				try {
 					mlist = controlador.listarMascotas(cedula);
 					JList list = new JList(mlist);
-					list.setBounds(10, 70, 414, 239);
+					list.setBounds(10, 71, 414, 180);
 					frame.getContentPane().add(list);
+					frame.repaint();
 				} catch (RemoteException | ClassNotFoundException | NonexistentEntityException
 						| PersistenciaException e1) {
 					JOptionPane.showMessageDialog(frame,
