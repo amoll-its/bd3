@@ -15,12 +15,14 @@ import logica.valueObjects.VOMascota;
 import persistencia.daos.DAODueños;
 import persistencia.daos.DAOMascotas;
 import persistencia.daos.IDAODueños;
+import persistencia.daos.IDAOMascotas;
 import poolConexiones.*;
 import persistencia.fabrica.FabricaAbstracta;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 
@@ -49,7 +51,8 @@ public class Fachada
 		 catch (IOException e){ 
 		   System.out.println("Error, no se puede leer el archivo de configuración!");
 		 }
-
+		System.out.printf("pool: %s \n", nomPool);
+		System.out.printf("fabrica: %s \n", nomFab);
 		ipool = (IPoolConexiones) Class.forName(nomPool).newInstance();
 		fabrica = (FabricaAbstracta) Class.forName(nomFab).newInstance();
 
@@ -82,7 +85,9 @@ public class Fachada
 		
 		EDueño ed = new EDueño (cedula,nombre,apellido);  		
 		
-		DAODueños ddueños = new DAODueños ();
+//		DAODueños ddueños = new DAODueños ();
+		IDAODueños ddueños = fabrica.crearDAODueños();
+
 		ddueños.insert (ed, icon);
 		ipool.liberarConexion(icon, true);
 				
@@ -98,7 +103,9 @@ public class Fachada
 		
 		EMascota em = new EMascota (apodo,raza,cedula);  		
 		
-		DAOMascotas dmascotas= new DAOMascotas(cedula);
+//		DAOMascotas dmascotas= new DAOMascotas(cedula);
+		IDAOMascotas dmascotas = fabrica.crearDAOMascotas(cedula);
+
 
 		try {
 			dmascotas.insert (em,icon);
@@ -119,7 +126,8 @@ public class Fachada
 		IConexion icon = ipool.obtenerConexion(true);
 		
 		//int cedula=vod.getCedula();
-		DAODueños ddueños = new DAODueños ();
+//		DAODueños ddueños = new DAODueños ();
+		IDAODueños ddueños = fabrica.crearDAODueños();
 
 		// Busco al dueño según la cédula
 		EDueño ed = ddueños.find(cd, icon);
@@ -140,7 +148,8 @@ public class Fachada
 	public void borrarDueñoMascotas (int cedula) throws RemoteException, NonexistentEntityException, ClassNotFoundException, PersistenciaException {
 
 		IConexion icon = ipool.obtenerConexion(true);
-		DAODueños ddueños = new DAODueños ();
+//		DAODueños ddueños = new DAODueños ();
+		IDAODueños ddueños = fabrica.crearDAODueños();
 
 		// Busco al dueño según la cédula
 		EDueño ed = ddueños.find(cedula,icon);
