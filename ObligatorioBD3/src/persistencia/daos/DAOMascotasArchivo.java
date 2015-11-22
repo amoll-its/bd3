@@ -30,11 +30,23 @@ public class DAOMascotasArchivo implements IDAOMascotas {
 	}
 
 	public void insert(EMascota em, IConexion icon) {
-		// TODO Auto-generated method stub
+
+		List<String> contenido = new LinkedList<String> ();
+		contenido.add(em.getApodo());
+		contenido.add(em.getRaza());
+		
+		File folder = new File("/home/amoll/1/");
+		String nomarch = Integer.toString(cedulaDueño);
+		Path path = Paths.get(folder + "/" + "mascotas-" + nomarch + ".txt");
+		try {
+			Files.write(path, contenido, ENCODING);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
-	@Override
 	public List<VOMascota> listarMascotas(IConexion icon) throws NonexistentEntityException {
 
 		List <VOMascota> listamas = new LinkedList<VOMascota> (); 
@@ -61,10 +73,16 @@ public class DAOMascotasArchivo implements IDAOMascotas {
 		return listamas;
 	}
 
-	@Override
 	public void borrarMascotas(IConexion icon) {
-		// TODO Auto-generated method stub
-		
+
+		File folder = new File("/home/amoll/1/");
+		String nomarch = Integer.toString(cedulaDueño);
+		Path path = Paths.get(folder + "/" + "mascotas-" + nomarch + ".txt");
+		try {
+		    Files.deleteIfExists(path);
+		} catch (IOException e) {
+		    System.err.println(e);
+		}		
 	}
 
 }

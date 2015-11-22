@@ -64,7 +64,6 @@ public class DAODueñosArchivo implements IDAODueños {
 		return lista;
 	}
 
-	@Override
 	public void insert(EDueño ed, IConexion con) throws PreexistingEntityException {
 
 		List<String> contenido = new LinkedList<String> ();
@@ -109,9 +108,16 @@ public class DAODueñosArchivo implements IDAODueños {
 		return ed;
 	}
 
-	@Override
 	public void delete(int cedula, IConexion con) throws NonexistentEntityException {
-		// TODO Auto-generated method stub
+
+		File folder = new File("/home/amoll/1/");
+		String nomarch = Integer.toString(cedula);
+		Path path = Paths.get(folder + "/" + "duenio-" + nomarch + ".txt");
+		try {
+		    Files.deleteIfExists(path);
+		} catch (IOException e) {
+		    System.err.println(e);
+		}		
 		
 	}
 
