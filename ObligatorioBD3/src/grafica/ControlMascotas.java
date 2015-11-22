@@ -38,8 +38,12 @@ public class ControlMascotas {
 	public void nuevaMascota( VOMascota vom) {
 		try
 		  {
-			// Invoco a la fachada remota.
-		    IFachada facha = (IFachada)Naming.lookup ("//localhost:1099/fachada");
+			Properties propiedades = new Properties();
+			propiedades.load(new FileInputStream("cliente.properties"));
+	 
+			String servfachada = propiedades.getProperty("fachada");			// Invoco a la fachada remota.
+//		    IFachada facha = (IFachada)Naming.lookup ("//localhost:1099/fachada");
+		    IFachada facha = (IFachada)Naming.lookup (servfachada);
 			facha.nuevaMascota (vom);
 		  }
 		  catch (Exception e)

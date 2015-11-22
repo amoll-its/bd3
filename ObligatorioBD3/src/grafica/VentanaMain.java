@@ -56,7 +56,9 @@ public class VentanaMain {
 		JButton btnNM = new JButton("Nueva mascota");
 		btnNM.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				VentanaNMascota window = new VentanaNMascota();
+				window.frame.setVisible(true);
+												
 			}
 		});
 		btnNM.setBounds(20, 95, 200, 25);

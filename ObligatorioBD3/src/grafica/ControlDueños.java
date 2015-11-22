@@ -38,8 +38,13 @@ public class ControlDueños {
 	public void nuevoDueño( VODueño vod) {
 		try
 		  {
+			Properties propiedades = new Properties();
+			propiedades.load(new FileInputStream("cliente.properties"));
+	 
+			String servfachada = propiedades.getProperty("fachada");
 			// Invoco a la fachada remota.
-		    IFachada facha = (IFachada)Naming.lookup ("//localhost:1099/fachada");
+		    //IFachada facha = (IFachada)Naming.lookup ("//localhost:1099/fachada");
+			IFachada facha = (IFachada)Naming.lookup (servfachada);
 			facha.nuevoDueño (vod);
 		  }
 		  catch (Exception e)
@@ -52,8 +57,13 @@ public class ControlDueños {
 	public void borrarDueñoMascotas( int cd) {
 		try
 		  {
+			Properties propiedades = new Properties();
+			propiedades.load(new FileInputStream("cliente.properties"));
+	 
+			String servfachada = propiedades.getProperty("fachada");
 			// Invoco a la fachada remota.
-		    IFachada facha = (IFachada)Naming.lookup ("//localhost:1099/fachada");
+		    //IFachada facha = (IFachada)Naming.lookup ("//localhost:1099/fachada");
+			IFachada facha = (IFachada)Naming.lookup (servfachada);
 			facha.borrarDueñoMascotas (cd);
 		  }
 		  catch (Exception e)
