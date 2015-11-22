@@ -29,9 +29,9 @@ public class PepeInsertar {
 
 			IConexion icon = ipool.obtenerConexion(true);
 
-			int cedula = 2345678;
-			String nombre = "Janis";
-			String apellido = "Joplin";
+			int cedula = 33333333;
+			String nombre = "XXXXXXXXX";
+			String apellido = "JJJJJJJJJ";
 			
 			EDueño ed = new EDueño (cedula,nombre,apellido);  		
 			
