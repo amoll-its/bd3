@@ -45,7 +45,9 @@ public class VentanaMain {
 		JButton btnND = new JButton("Nuevo dueño");
 		btnND.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				VentanaNDuenio window = new VentanaNDuenio();
+				window.frame.setVisible(true);
+								
 			}
 		});
 		btnND.setBounds(20, 50, 200, 25);

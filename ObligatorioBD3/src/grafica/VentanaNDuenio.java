@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 	
-import logica.valueObjects.VOMascota;
+import logica.valueObjects.VODueño;
 
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
@@ -17,15 +17,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
-public class VentanaLMascotas {
+public class VentanaNDuenio {
 
 	JFrame frame;
 	private JTextField txtCedula;
+	private JTextField txtNombre;
+	private JTextField txtApellido;
 
 	/**
 	 * Create the application.
 	 */
-	public VentanaLMascotas() {
+	public VentanaNDuenio() {
 		initialize();
 	}
 
@@ -39,11 +41,11 @@ public class VentanaLMascotas {
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 			
-		final ControlMascotas ctlMascotas = new ControlMascotas();
+		final ControlDueños ctlDueños = new ControlDueños();
 
 		final DefaultListModel mlist = new DefaultListModel();		
 		
-		final JLabel lblTitulo = new JLabel("MASCOTAS");
+		final JLabel lblTitulo = new JLabel("NUEVO DUEÑO");
 		lblTitulo.setBounds(20,10, 200, 20);
 		frame.getContentPane().add(lblTitulo);
 		
@@ -56,36 +58,38 @@ public class VentanaLMascotas {
 		txtCedula.setBounds(90, 50, 100, 19);
 		frame.getContentPane().add(txtCedula);
 		txtCedula.setColumns(10);
-	
-		final JList list = new JList(mlist);
-		list.setBounds(20, 100, 300, 200);
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-		frame.getContentPane().add(list);
+
+		final JLabel lblNombre = new JLabel("Nombre:");
+		lblNombre.setBounds(20, 90, 61, 15);
+		frame.getContentPane().add(lblNombre);
 		
-		JButton btnLM = new JButton("Listar mascotas");
-		btnLM.addActionListener(new ActionListener() {
+		txtNombre = new JTextField();
+		txtNombre.setBounds(90, 90, 100, 19);
+		frame.getContentPane().add(txtNombre);
+		txtNombre.setColumns(10);
+
+		final JLabel lblApellido = new JLabel("Apellido:");
+		lblApellido.setBounds(20, 130, 61, 15);
+		frame.getContentPane().add(lblApellido);
+		
+		txtApellido = new JTextField();
+		txtApellido.setBounds(90, 130, 100, 19);
+		frame.getContentPane().add(txtApellido);
+		txtApellido.setColumns(10);
+
+		
+		JButton btnND = new JButton("Nuevo Dueño");
+		btnND.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				List<VOMascota> lmascotas = new ArrayList<VOMascota>();
-				int ced = Integer.parseInt(txtCedula.getText());
-				lmascotas = ctlMascotas.listarMascotas(ced);
-				int tope = lmascotas.size();
-				final int[] listacod = new int[tope];
-				int pos = 0;
-				mlist.clear();
-				for(VOMascota item : lmascotas) {
-					int cedula = item.getCedulaDueño ();
-					String apodo = item.getApodo ();
-					String raza = item.getRaza ();
-					mlist.addElement(apodo + ", " + raza);
-					listacod[pos]= cedula;
-					pos++;
-				}
-				
+				int cd = Integer.parseInt(txtCedula.getText());
+				String nd=txtNombre.getText();
+				String ad=txtApellido.getText();
+				VODueño vod = new VODueño(cd, nd, ad);
+				ctlDueños.nuevoDueño(vod);
 			}
 		});
-		btnLM.setBounds(200, 50, 200, 25);
-		frame.getContentPane().add(btnLM);
+		btnND.setBounds(200, 50, 200, 25);
+		frame.getContentPane().add(btnND);
 		
 	
 
