@@ -19,6 +19,7 @@ import poolConexiones.IConexion;
 public class DAOMascotasArchivo implements IDAOMascotas {
 
 	final static Charset ENCODING = StandardCharsets.UTF_8;
+	private static String datafolder="data/";
 	private int cedulaDueño;
 
 	public DAOMascotasArchivo(int cedula) {
@@ -35,7 +36,7 @@ public class DAOMascotasArchivo implements IDAOMascotas {
 		contenido.add(em.getApodo());
 		contenido.add(em.getRaza());
 		
-		File folder = new File("/home/amoll/1/");
+		File folder = new File(datafolder);
 		String nomarch = Integer.toString(cedulaDueño);
 		Path path = Paths.get(folder + "/" + "mascotas-" + nomarch + ".txt");
 		try {
@@ -52,7 +53,7 @@ public class DAOMascotasArchivo implements IDAOMascotas {
 		List <VOMascota> listamas = new LinkedList<VOMascota> (); 
 		List<String> contenido = null;
 
-		File folder = new File("/home/amoll/1/");
+		File folder = new File(datafolder);
 		String nomarch = Integer.toString(cedulaDueño);
 		Path path = Paths.get(folder + "/" + "mascotas-" + nomarch + ".txt");
 		try {
@@ -75,7 +76,7 @@ public class DAOMascotasArchivo implements IDAOMascotas {
 
 	public void borrarMascotas(IConexion icon) {
 
-		File folder = new File("/home/amoll/1/");
+		File folder = new File(datafolder);
 		String nomarch = Integer.toString(cedulaDueño);
 		Path path = Paths.get(folder + "/" + "mascotas-" + nomarch + ".txt");
 		try {

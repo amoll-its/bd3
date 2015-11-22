@@ -19,6 +19,7 @@ import poolConexiones.IConexion;
 public class DAODueñosArchivo implements IDAODueños {
 
 	final static Charset ENCODING = StandardCharsets.UTF_8;
+	private static String datafolder="data/";
 	  
 	public DAODueñosArchivo() {
 		// TODO Auto-generated constructor stub
@@ -35,7 +36,7 @@ public class DAODueñosArchivo implements IDAODueños {
 		List<String> contenido = null;
 		List <VODueño> lista = new LinkedList<VODueño> (); 
 		
-		File folder = new File("/home/amoll/1/");
+		File folder = new File(datafolder);
 		File[] listOfFiles = folder.listFiles();
 
 		for (File file : listOfFiles) {
@@ -43,9 +44,7 @@ public class DAODueñosArchivo implements IDAODueños {
 				String nomarch = file.getName();
 				String namecheck = nomarch.substring(0, Math.min(nomarch.length(), 7));
 			    if (namecheck.equals("duenio-")) {
-//					System.out.println("Procesando: " + nomarch);
 					Path path = Paths.get(folder + "/" + nomarch);
-//					System.out.println("Cargando: " + folder + "/" + nomarch);
 					try {
 						contenido = Files.readAllLines(path, ENCODING);
 						int cedula = Integer.parseInt(contenido.get(0));
@@ -55,7 +54,6 @@ public class DAODueñosArchivo implements IDAODueños {
 		                lista.add(datoDueño);
 
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}		
 			    }
@@ -72,7 +70,7 @@ public class DAODueñosArchivo implements IDAODueños {
 		contenido.add(ed.getNombre());
 		contenido.add(ed.getApellido());
 
-		File folder = new File("/home/amoll/1/");
+		File folder = new File(datafolder);
 		String nomarch = Integer.toString(ed.getCedula());
 		Path path = Paths.get(folder + "/" + "duenio-" + nomarch + ".txt");
 		
@@ -93,7 +91,7 @@ public class DAODueñosArchivo implements IDAODueños {
 		List<String> contenido = null;
 
 		// intento cargar el archivo correspondiente al dueño.
-		File folder = new File("/home/amoll/1/");
+		File folder = new File(datafolder);
 		String nomarch = Integer.toString(ced);
 		Path path = Paths.get(folder + "/" + "duenio-" + nomarch + ".txt");
 		try {
@@ -110,7 +108,7 @@ public class DAODueñosArchivo implements IDAODueños {
 
 	public void delete(int cedula, IConexion con) throws NonexistentEntityException {
 
-		File folder = new File("/home/amoll/1/");
+		File folder = new File(datafolder);
 		String nomarch = Integer.toString(cedula);
 		Path path = Paths.get(folder + "/" + "duenio-" + nomarch + ".txt");
 		try {
