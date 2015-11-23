@@ -1,9 +1,11 @@
 package grafica.controladores;
 
+import java.io.FileInputStream;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
@@ -18,7 +20,14 @@ public class ControladorNuevoDueño {
 	public ControladorNuevoDueño() {
 		try
 		{
-		    facha = (IFachada)Naming.lookup ("//localhost:1099/fachada");
+			Properties propiedades = new Properties();
+			propiedades.load(new FileInputStream("cliente.properties"));
+	 
+			String servfachada = propiedades.getProperty("fachada");
+			// Invoco a la fachada remota.
+			facha = (IFachada)Naming.lookup (servfachada);
+
+//			facha = (IFachada)Naming.lookup ("//localhost:1099/fachada");
 		  }
 		  catch (Exception e)
 		  {
