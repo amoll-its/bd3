@@ -56,7 +56,7 @@ public class CreaBD {
 			System.out.println(cant + " tablas creadas");
 			
 			/* Creo tabla Mascotas */
-			creatb = "create table Mascotas (apodo VARCHAR(45), raza VARCHAR(45), cedulaDuenio INT, FOREIGN KEY (cedulaDuenio) REFERENCES Duenios (cedula))";
+			creatb = "create table Mascotas (apodo VARCHAR(45) primary key, raza VARCHAR(45), cedulaDuenio INT, FOREIGN KEY (cedulaDuenio) REFERENCES Duenios (cedula))";
 			Statement stmt3 = con.createStatement();
 			cant = stmt3.executeUpdate(creatb);
 			stmt3.close();
