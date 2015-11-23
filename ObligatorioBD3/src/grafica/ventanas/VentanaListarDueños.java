@@ -1,6 +1,5 @@
 package grafica.ventanas;
 
-import java.awt.EventQueue;
 import java.rmi.RemoteException;
 
 import javax.swing.DefaultListModel;
@@ -10,12 +9,7 @@ import javax.swing.JOptionPane;
 
 import grafica.controladores.ControladorListarDueños;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 import logica.excepciones.PersistenciaException;
-import logica.valueObjects.VODueño;
 
 public class VentanaListarDueños {
 	private ControladorListarDueños controlador;
@@ -39,9 +33,8 @@ public class VentanaListarDueños {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setTitle("Dueños");
 		frame.setLocationRelativeTo( null );
-
-
 		
 		DefaultListModel mlist = new DefaultListModel();
 		mlist = controlador.listarDueños();	

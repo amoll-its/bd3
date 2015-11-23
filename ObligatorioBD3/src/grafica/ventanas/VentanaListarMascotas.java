@@ -1,6 +1,5 @@
 package grafica.ventanas;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
@@ -11,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import grafica.controladores.ControladorListarDueños;
 import grafica.controladores.ControladorListarMascotas;
 import logica.excepciones.NonexistentEntityException;
 import logica.excepciones.PersistenciaException;
@@ -45,6 +43,7 @@ public class VentanaListarMascotas {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setTitle("Mascotas");
 		frame.setLocationRelativeTo(null);
 		
 		JLabel lblIngreseLaCedula = new JLabel("Ingrese la Cedula:");
