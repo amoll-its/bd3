@@ -32,6 +32,11 @@ public class VentanaMain {
 		initialize();
 	}
 
+
+	public void visible() {
+		frame.setVisible(true);
+	}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */

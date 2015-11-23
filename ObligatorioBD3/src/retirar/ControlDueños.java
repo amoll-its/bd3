@@ -1,4 +1,4 @@
-package grafica;
+package retirar;
 
 import java.io.FileInputStream;
 import java.io.IOException;

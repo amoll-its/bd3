@@ -2,6 +2,8 @@ package grafica;
 
 import java.awt.EventQueue;
 
+import grafica.ventanas.*;
+
 public class Main {
 
   public static void main(String[] args) {
@@ -10,9 +12,9 @@ public class Main {
 	EventQueue.invokeLater(new Runnable() {
 		public void run() {
 			try {
-//				VentanaDuenios window = new VentanaDuenios();
-				VentanaMain window = new VentanaMain();
-				window.frame.setVisible(true);
+				VentanaMain wmain = new VentanaMain();
+//				window.frame.setVisible(true);
+				wmain.visible();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
