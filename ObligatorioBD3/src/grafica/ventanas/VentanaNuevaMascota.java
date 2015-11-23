@@ -57,7 +57,7 @@ public class VentanaNuevaMascota {
 		frmIngresarNuevaMascota.getContentPane().add(txtRaza);
 		txtRaza.setColumns(10);
 		
-		JLabel lblCedula = new JLabel("Cedula:");
+		JLabel lblCedula = new JLabel("Cédula dueño:");
 		lblCedula.setBounds(10, 143, 414, 14);
 		frmIngresarNuevaMascota.getContentPane().add(lblCedula);
 		

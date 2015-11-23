@@ -35,8 +35,8 @@ public class VentanaBorrarDueñoMascotas {
 		frmBorrarDueoY.setLocationRelativeTo(null);
 
 		
-		JLabel lblCedula = new JLabel("Cedula:");
-		lblCedula.setBounds(10, 11, 46, 14);
+		JLabel lblCedula = new JLabel("Cédula:");
+		lblCedula.setBounds(10, 11, 58, 14);
 		frmBorrarDueoY.getContentPane().add(lblCedula);
 		
 		txtCedula = new JTextField();
