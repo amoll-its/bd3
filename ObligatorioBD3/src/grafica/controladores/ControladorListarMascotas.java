@@ -40,7 +40,15 @@ public class ControladorListarMascotas {
 			  e.printStackTrace();
 		  }	
 	}
-	
+
+	public List<VOMascota> listarMascotas(int cedula) throws RemoteException, ClassNotFoundException, NonexistentEntityException, PersistenciaException {
+
+		List<VOMascota> listamascotas = new ArrayList<VOMascota>();
+		listamascotas = facha.listarMascotas(cedula);
+		
+		return listamascotas;	
+	}
+/*	
 	public DefaultListModel listarMascotas(int cedula) throws RemoteException, ClassNotFoundException, NonexistentEntityException, PersistenciaException {
 		List<VOMascota> listamascotas = new ArrayList<VOMascota>();
 		listamascotas = facha.listarMascotas(cedula);
@@ -53,11 +61,11 @@ public class ControladorListarMascotas {
 			String apodo = item.getApodo();
 			String raza = item.getRaza();
 			mlist.addElement(apodo + " ("+ raza + ")");
-//			mlist.addElement(apodo);
 			listacod[pos]= cedula;
 			pos++;
 		}
 		
 		return mlist;	
 	}
+*/
 }

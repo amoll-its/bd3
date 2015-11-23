@@ -54,22 +54,29 @@ public class VentanaListarMascotas {
 		txtCedula.setBounds(10, 36, 279, 30);
 		frame.getContentPane().add(txtCedula);
 		txtCedula.setColumns(10);
+
+		final DefaultListModel mlist = new DefaultListModel();
+		JList list = new JList(mlist);
+		list.setBounds(10, 71, 414, 180);
+		frame.getContentPane().add(list);
 		
 		JButton btnListar = new JButton("Listar");
 		btnListar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				int cedula = Integer.parseInt(txtCedula.getText());
-				DefaultListModel mlist = new DefaultListModel();;
 				mlist.clear();
 				try {
-					mlist = controlador.listarMascotas(cedula);
-					System.out.print("Tamaño lista:" + mlist.size()+"\n");
-					JList list = new JList(mlist);
+					List<VOMascota> lmascotas = new ArrayList<VOMascota>();
+					lmascotas = controlador.listarMascotas(cedula);
+					for(VOMascota item : lmascotas) {
+						String apodo = item.getApodo();
+						String raza = item.getRaza();
+						mlist.addElement(apodo + " ("+ raza + ")");
+					}
+//					System.out.print("Tamaño lista:" + mlist.size()+"\n");
 					//frame.invalidate();
-					frame.revalidate();
-					frame.repaint();
-					list.setBounds(10, 71, 414, 180);
-					frame.getContentPane().add(list);
+//					frame.revalidate();
+//					frame.repaint();
 				} catch (RemoteException | ClassNotFoundException | NonexistentEntityException
 						| PersistenciaException e1) {
 					JOptionPane.showMessageDialog(frame,

@@ -1,4 +1,4 @@
-	package grafica;
+	package retirar;
 
 import java.awt.EventQueue;
 
@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
+import grafica.ControlDueños;
 import logica.valueObjects.VODueño;
 
 import javax.swing.JLabel;
