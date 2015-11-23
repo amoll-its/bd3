@@ -51,8 +51,6 @@ public class Fachada
 		 catch (IOException e){ 
 		   System.out.println("Error, no se puede leer el archivo de configuración!");
 		 }
-//		System.out.printf("pool: %s \n", nomPool);
-//		System.out.printf("fabrica: %s \n", nomFab);
 		ipool = (IPoolConexiones) Class.forName(nomPool).newInstance();
 		fabrica = (FabricaAbstracta) Class.forName(nomFab).newInstance();
 
@@ -61,8 +59,7 @@ public class Fachada
 	public List <VODueño> listarDueños  () throws RemoteException, PersistenciaException {
 
 		IDAODueños ddueños = fabrica.crearDAODueños();
-		
-		IConexion icon = ipool.obtenerConexion(true);
+		IConexion icon = ipool.obtenerConexion(false);
 			
 		// Cargo la lista de dueños
 		List <VODueño> lista = new LinkedList<VODueño> ();
@@ -101,15 +98,12 @@ public class Fachada
 		
 		EMascota em = new EMascota (apodo,raza,cedula);  		
 		
-//		DAOMascotas dmascotas= new DAOMascotas(cedula);
 		IDAOMascotas dmascotas = fabrica.crearDAOMascotas(cedula);
-
 
 		try {
 			dmascotas.insert (em,icon);
 			ipool.liberarConexion(icon, true, true);
 			} catch (SQLException e) {
-//			System.out.print("Algo se rompió!\n");
 				ipool.liberarConexion(icon, false, true);
 				throw new NonexistentEntityException("El usuario no existe.");
 		}
@@ -117,14 +111,10 @@ public class Fachada
 
 	}
 
-//	public List <VOMascota> listarMascotas (VODueño vod) throws RemoteException, NonexistentEntityException, ClassNotFoundException, PersistenciaException {
-	//En el practico 4 dice que a listarMascotas se le pasa la CEDULA no un VODueño
 	public List <VOMascota> listarMascotas (int cd) throws RemoteException, NonexistentEntityException, ClassNotFoundException, PersistenciaException {
 
-		IConexion icon = ipool.obtenerConexion(true);
+		IConexion icon = ipool.obtenerConexion(false);
 		
-		//int cedula=vod.getCedula();
-//		DAODueños ddueños = new DAODueños ();
 		IDAODueños ddueños = fabrica.crearDAODueños();
 
 		// Busco al dueño según la cédula
@@ -135,7 +125,6 @@ public class Fachada
 			lista = ed.listarMascotas(icon);
 			ipool.liberarConexion(icon, true, false);
 			} catch (SQLException e) {
-			// TODO Auto-generated catch block
 				ipool.liberarConexion(icon, false, false);
 				e.printStackTrace();
 		}

@@ -31,7 +31,7 @@ public class DAODueñosArchivo implements IDAODueños {
 		
 	}
 
-	public List<VODueño> listarDueños(IConexion con) {
+	public List<VODueño> listarDueños(IConexion icon) {
 
 		List<String> contenido = null;
 		List <VODueño> lista = new LinkedList<VODueño> (); 

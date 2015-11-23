@@ -32,18 +32,6 @@ public class DAODueños implements IDAODueños {
 	public List<VODueño> listarDueños (IConexion icon) {
 		/* devuelve un lista con todos los dueños */
 
-/*		
-		// Abro la conexión a la BD
-		Connection con = null;
-		AccesoBD abd = new AccesoBD();
-		if (con == null)
-		try {
-			con = abd.abroCon();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-*/
 	
 		Connection con = ((Conexion)icon).getConnection();
 		
@@ -67,14 +55,6 @@ public class DAODueños implements IDAODueños {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-/*
-		try {
-			abd.cierroCon(con);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-*/
 		return lista;
 	}		
 

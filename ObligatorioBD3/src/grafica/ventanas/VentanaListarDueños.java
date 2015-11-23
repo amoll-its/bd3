@@ -19,7 +19,7 @@ public class VentanaListarDueños {
 		controlador = new ControladorListarDueños();
 		
 		try {
-			controlador.listarDueños();
+//			controlador.listarDueños();
 			initialize();
 
 		} catch (Exception e) {

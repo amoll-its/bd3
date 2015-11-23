@@ -2,6 +2,8 @@ package logica;
 
 import java.io.Serializable;
 
+import javax.swing.JOptionPane;
+
 public class Monitor implements Serializable {
  
     private static final long serialVersionUID = 1L;
@@ -18,9 +20,11 @@ public class Monitor implements Serializable {
         while (escribiendo) 
         {   try { 
                 wait();
-        	}catch (InterruptedException e){}
+        	}catch (InterruptedException e){
+  			  JOptionPane.showMessageDialog(null, "Error en el monitor!");
+  			  e.printStackTrace();
+        	}
         }
-         
         cantLectores = cantLectores + 1;            
     }
      
@@ -36,15 +40,17 @@ public class Monitor implements Serializable {
         {   try { 
                 wait();
             }
-            catch (InterruptedException e){}
+            catch (InterruptedException e){
+    			  JOptionPane.showMessageDialog(null, "Error en el monitor!");
+      			  e.printStackTrace();
+            }
         }
-         
         escribiendo = true;
     }
      
     public synchronized void terminoEscritura()
     {
-        notify();
+    	notify();
         escribiendo = false;
     }
     
