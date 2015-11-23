@@ -28,8 +28,6 @@ public class ControladorNuevaMascota {
 			String servfachada = propiedades.getProperty("fachada");
 			// Invoco a la fachada remota.
 			facha = (IFachada)Naming.lookup (servfachada);
-
-//			facha = (IFachada)Naming.lookup ("//localhost:1099/fachada");
 		  }
 		  catch (Exception e)
 		  {
@@ -40,7 +38,6 @@ public class ControladorNuevaMascota {
 	
 	public void registrarMascota(String apodo, String raza, int cedula) throws MalformedURLException, RemoteException, NotBoundException, ClassNotFoundException, NonexistentEntityException, PersistenciaException{
 		VOMascota mascota = new VOMascota(apodo,raza,cedula);
-	    IFachada facha = (IFachada)Naming.lookup ("//localhost:1099/fachada");
 		facha.nuevaMascota(mascota);
 	}
 }
