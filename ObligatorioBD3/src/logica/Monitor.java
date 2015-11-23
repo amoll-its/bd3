@@ -2,50 +2,54 @@ package logica;
 
 import java.io.Serializable;
 
-public class Monitor  implements Serializable{
-	private int cantLectores;
-	private boolean escribiendo;
-	private static Monitor instancia;
-	
-	private final static long serialVersionUID = 1;
-	
-	private Monitor() { 
-		cantLectores = 0;
-		escribiendo = false;
-	}
-	
-	public static Monitor getInstancia(){
-		if (instancia == null)
-			instancia = new Monitor();
-		return instancia;
-	}
-	
-	public synchronized void comienzoLectura() {
-		while (escribiendo == true)
-			try {
-				wait();
-			} catch (InterruptedException e) {
-		}
-		cantLectores++;
-	}
-
-	public synchronized void comienzoEscritura() {
-		while (cantLectores > 0 || escribiendo == true)	
-			try {
-				wait();
-			} catch (InterruptedException e) {
-			}
-		escribiendo = true;
-	}
-
-	public synchronized void terminoLectura() {	
-		cantLectores--;
-		notifyAll();
-	}
-
-	public synchronized void terminoEscritura() {
-		escribiendo = false;
-		notifyAll();
-	}
-
+public class Monitor implements Serializable {
+ 
+    private static final long serialVersionUID = 1L;
+    private int cantLectores;
+    private boolean escribiendo;
+     
+    public Monitor(){
+        cantLectores=0;
+        escribiendo=false;
+    }
+     
+    public synchronized void comienzoLectura()  
+    {
+        while (escribiendo) 
+        {   try { 
+                wait();
+        	}catch (InterruptedException e){}
+        }
+         
+        cantLectores = cantLectores + 1;            
+    }
+     
+    public synchronized void terminoLectura()
+    {
+        notify();
+        cantLectores = cantLectores - 1;
+    }
+     
+    public synchronized void comienzoEscritura() 
+    {
+        while ((escribiendo) || (cantLectores>0))
+        {   try { 
+                wait();
+            }
+            catch (InterruptedException e){}
+        }
+         
+        escribiendo = true;
+    }
+     
+    public synchronized void terminoEscritura()
+    {
+        notify();
+        escribiendo = false;
+    }
+    
+    public synchronized int cantlectores(){
+    	return cantLectores;
+    }
+ 
 }

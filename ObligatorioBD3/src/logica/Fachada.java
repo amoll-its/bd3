@@ -51,8 +51,8 @@ public class Fachada
 		 catch (IOException e){ 
 		   System.out.println("Error, no se puede leer el archivo de configuración!");
 		 }
-		System.out.printf("pool: %s \n", nomPool);
-		System.out.printf("fabrica: %s \n", nomFab);
+//		System.out.printf("pool: %s \n", nomPool);
+//		System.out.printf("fabrica: %s \n", nomFab);
 		ipool = (IPoolConexiones) Class.forName(nomPool).newInstance();
 		fabrica = (FabricaAbstracta) Class.forName(nomFab).newInstance();
 
@@ -68,7 +68,7 @@ public class Fachada
 		List <VODueño> lista = new LinkedList<VODueño> ();
 		lista = ddueños.listarDueños (icon);
 		
-		ipool.liberarConexion(icon, true);
+		ipool.liberarConexion(icon, true, false);
 		
 		return lista;			
 	}
@@ -87,7 +87,7 @@ public class Fachada
 		IDAODueños ddueños = fabrica.crearDAODueños();
 
 		ddueños.insert (ed, icon);
-		ipool.liberarConexion(icon, true);
+		ipool.liberarConexion(icon, true, true);
 				
 	}
 
@@ -107,10 +107,10 @@ public class Fachada
 
 		try {
 			dmascotas.insert (em,icon);
-			ipool.liberarConexion(icon, true);
+			ipool.liberarConexion(icon, true, true);
 			} catch (SQLException e) {
 //			System.out.print("Algo se rompió!\n");
-				ipool.liberarConexion(icon, false);
+				ipool.liberarConexion(icon, false, true);
 				throw new NonexistentEntityException("El usuario no existe.");
 		}
 
@@ -133,10 +133,10 @@ public class Fachada
 		List <VOMascota> lista = new LinkedList<VOMascota> ();
 		try {
 			lista = ed.listarMascotas(icon);
-			ipool.liberarConexion(icon, true);
+			ipool.liberarConexion(icon, true, false);
 			} catch (SQLException e) {
 			// TODO Auto-generated catch block
-				ipool.liberarConexion(icon, false);
+				ipool.liberarConexion(icon, false, false);
 				e.printStackTrace();
 		}
 		return lista;			
@@ -155,11 +155,11 @@ public class Fachada
 		try {
 			ed.borrarMascotas(icon);
 			ddueños.delete (cedula,icon);			
-			ipool.liberarConexion(icon, true);	
+			ipool.liberarConexion(icon, true, true);	
 			} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			ipool.liberarConexion(icon, false);	
+			ipool.liberarConexion(icon, false, true);	
 			}
 
 	}	

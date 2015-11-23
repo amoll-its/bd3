@@ -18,9 +18,7 @@ public class PoolConexiones implements IPoolConexiones {
 	private int nivelTransaccionalidad;
 	private IConexion[] conexiones;
 	private int tamanio, creadas, tope;
-//	private static PoolConexiones mipool;//Singleton
 	
-//CAMBIO PARA SINGLETON	public PoolConexiones() throws ClassNotFoundException{
 	public PoolConexiones() throws ClassNotFoundException{
 		try{
 			Properties propiedades = new Properties();
@@ -46,14 +44,6 @@ public class PoolConexiones implements IPoolConexiones {
 	   
 	}
 
-/*	public static PoolConexiones getPool() throws ClassNotFoundException {
-		if (mipool==null){
-			mipool = new PoolConexiones();
-		}
-		return mipool;
-	}
-*/	
-	
 	public synchronized IConexion obtenerConexion(boolean mod) throws PersistenciaException {
 		IConexion conex = null;
 		while (conex==null){
@@ -83,13 +73,10 @@ public class PoolConexiones implements IPoolConexiones {
 						throw new PersistenciaException ("error de sincronizaci�n");
 					}
 		}
-//		System.out.print("Tamaño: " + tamanio +"\n");
-//		System.out.print("Creadas: " + creadas +"\n");
-//		System.out.print("Tope: " + tope +"\n");
 		return conex;
 	}
 
-	public synchronized void liberarConexion(IConexion conex, boolean res) throws PersistenciaException {
+	public synchronized void liberarConexion(IConexion conex, boolean res, boolean escribe) throws PersistenciaException {
 		// TODO Auto-generated method stub
 		Connection con;
 		con=((Conexion) conex).getConnection();
@@ -108,9 +95,6 @@ public class PoolConexiones implements IPoolConexiones {
 		tope++;
 		conexiones[tope-1]= conex;
 		notify();
-//		System.out.print("Tamaño: " + tamanio +"\n");
-//		System.out.print("Creadas: " + creadas +"\n");
-//		System.out.print("Tope: " + tope +"\n");
 	}
 
 

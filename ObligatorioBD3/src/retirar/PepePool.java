@@ -20,15 +20,15 @@ public class PepePool {
 		System.out.print("Conexion 2*******************\n");
 		IConexion icon2 = ipool.obtenerConexion(true);
 		System.out.print("Libero 2*******************\n");
-		ipool.liberarConexion(icon2, true);
+//		ipool.liberarConexion(icon2, true);
 		System.out.print("Conexion 3*******************\n");
 		IConexion icon3 = ipool.obtenerConexion(true);
 		System.out.print("Libero 1*******************\n");
-		ipool.liberarConexion(icon1, true);
+//		ipool.liberarConexion(icon1, true);
 		System.out.print("Conexion 4*******************\n");
 		IConexion icon4 = ipool.obtenerConexion(true);
 		System.out.print("Libero 3*******************\n");
-		ipool.liberarConexion(icon3, true);
+//		ipool.liberarConexion(icon3, true);
 		System.out.print("Conexion 5*******************\n");
 		IConexion icon5 = ipool.obtenerConexion(true);
 		System.out.print("Conexion 6*******************\n");
@@ -36,13 +36,13 @@ public class PepePool {
 		System.out.print("Conexion 7*******************\n");
 		IConexion icon7 = ipool.obtenerConexion(true);
 		System.out.print("Libero 4*******************\n");
-		ipool.liberarConexion(icon4, true);
+//		ipool.liberarConexion(icon4, true);
 		System.out.print("Libero 5*******************\n");
-		ipool.liberarConexion(icon5, true);
+//		ipool.liberarConexion(icon5, true);
 		System.out.print("Libero 6*******************\n");
-		ipool.liberarConexion(icon6, true);
+//		ipool.liberarConexion(icon6, true);
 		System.out.print("Libero 7*******************\n");
-		ipool.liberarConexion(icon7, true);
+//		ipool.liberarConexion(icon7, true);
 		System.out.print("*******************EUREKA!!*******************\n");
 
 	}
