@@ -17,6 +17,7 @@ import grafica.controladores.ControladorNuevaMascota;
 import grafica.controladores.ControladorNuevoDueño;
 import logica.excepciones.NonexistentEntityException;
 import logica.excepciones.PersistenciaException;
+import logica.excepciones.PreexistingEntityException;
 
 import javax.swing.JButton;
 
@@ -87,6 +88,7 @@ public class VentanaNuevaMascota {
 					if(micedula != -1){
 						try {
 							controlador.registrarMascota(apodo, raza, micedula);
+							JOptionPane.showMessageDialog(frmIngresarNuevaMascota,"Mascota creada con éxito.");
 						} catch (MalformedURLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -105,8 +107,10 @@ public class VentanaNuevaMascota {
 						} catch (PersistenciaException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
+						} catch (PreexistingEntityException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
 						}
-						JOptionPane.showMessageDialog(frmIngresarNuevaMascota,"Mascota creada con éxito.");
 						frmIngresarNuevaMascota.dispose();
 					}
 				}else{

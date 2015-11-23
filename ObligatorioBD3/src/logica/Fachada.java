@@ -105,7 +105,7 @@ public class Fachada
 			ipool.liberarConexion(icon, true, true);
 			} catch (SQLException e) {
 				ipool.liberarConexion(icon, false, true);
-				throw new NonexistentEntityException("El usuario no existe.");
+				throw new NonexistentEntityException("El dueño no existe.");
 		}
 
 

@@ -36,7 +36,7 @@ public class ControladorNuevaMascota {
 		  }		
 	}
 	
-	public void registrarMascota(String apodo, String raza, int cedula) throws MalformedURLException, RemoteException, NotBoundException, ClassNotFoundException, NonexistentEntityException, PersistenciaException{
+	public void registrarMascota(String apodo, String raza, int cedula) throws MalformedURLException, RemoteException, NotBoundException, PreexistingEntityException, ClassNotFoundException, NonexistentEntityException, PersistenciaException{
 		VOMascota mascota = new VOMascota(apodo,raza,cedula);
 		facha.nuevaMascota(mascota);
 	}

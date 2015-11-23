@@ -91,6 +91,7 @@ public class VentanaNuevoDueño {
 							if(micedula != -1){
 								try {
 									controlador.registrarDueño(micedula, nombre, apellido);
+									JOptionPane.showMessageDialog(frmIngresarNuevoDueño,"Dueño creado con exito.");
 								} catch (RemoteException e1) {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();
@@ -104,7 +105,6 @@ public class VentanaNuevoDueño {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();
 								}
-								JOptionPane.showMessageDialog(frmIngresarNuevoDueño,"Dueño creado con exito.");
 								frmIngresarNuevoDueño.dispose();
 							}					
 	

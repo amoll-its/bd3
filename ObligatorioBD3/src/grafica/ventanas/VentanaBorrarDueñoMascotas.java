@@ -61,11 +61,11 @@ public class VentanaBorrarDueñoMascotas {
 					if(micedula != -1){
 						try{
 							controlador.borrarDueño(micedula);
+							JOptionPane.showMessageDialog(frmBorrarDueoY,"Dueño borrado con exito.");
 						}catch(Exception e1){
 							JOptionPane.showMessageDialog(frmBorrarDueoY,"Error al borrar.");
 						}
 						
-						JOptionPane.showMessageDialog(frmBorrarDueoY,"Dueño borrado con exito.");
 					}					
 				}else{
 					JOptionPane.showMessageDialog(frmBorrarDueoY,"Completa todos los campos.");

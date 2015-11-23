@@ -30,7 +30,8 @@ public class ControladorBorrarDueño {
 		  {
 			  JOptionPane.showMessageDialog(null, "Ha ocurrido un error de RMI");
 			  e.printStackTrace();
-		  }		
+		  }
+		
 	}
 	
 	public void borrarDueño(int micedula) throws RemoteException, ClassNotFoundException, NonexistentEntityException, PersistenciaException {
