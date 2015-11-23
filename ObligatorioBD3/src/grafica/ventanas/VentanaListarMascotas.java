@@ -45,6 +45,7 @@ public class VentanaListarMascotas {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setLocationRelativeTo(null);
 		
 		JLabel lblIngreseLaCedula = new JLabel("Ingrese la Cedula:");
 		lblIngreseLaCedula.setBounds(10, 11, 414, 14);

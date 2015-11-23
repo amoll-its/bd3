@@ -67,7 +67,7 @@ public class VentanaMain {
 		btnNuevoDueo.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				VentanaNuevoDueño vnd = new VentanaNuevoDueño();
-				vnd.frmIngresarNuevoDueo.setVisible(true);
+				vnd.frmIngresarNuevoDueño.setVisible(true);
 			}
 		});
 		btnNuevoDueo.setBounds(10, 99, 414, 33);

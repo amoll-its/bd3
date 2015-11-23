@@ -36,6 +36,7 @@ public class VentanaNuevaMascota {
 		frmIngresarNuevaMascota.setBounds(100, 100, 450, 290);
 		frmIngresarNuevaMascota.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmIngresarNuevaMascota.getContentPane().setLayout(null);
+		frmIngresarNuevaMascota.setLocationRelativeTo(null);
 		
 		JLabel lblApodo = new JLabel("Apodo:");
 		lblApodo.setBounds(10, 11, 414, 14);

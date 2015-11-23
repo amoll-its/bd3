@@ -25,7 +25,7 @@ import javax.swing.JButton;
 
 public class VentanaNuevoDueño {
 
-	JFrame frmIngresarNuevoDueo;
+	JFrame frmIngresarNuevoDueño;
 	private JTextField txtCedula;
 	private JTextField txtNombre;
 	private JTextField txtApellido;
@@ -36,37 +36,38 @@ public class VentanaNuevoDueño {
 	}
 
 	private void initialize() {
-		frmIngresarNuevoDueo = new JFrame();
-		frmIngresarNuevoDueo.setTitle("Ingresar nuevo dueño");
-		frmIngresarNuevoDueo.setBounds(100, 100, 450, 285);
-		frmIngresarNuevoDueo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frmIngresarNuevoDueo.getContentPane().setLayout(null);
+		frmIngresarNuevoDueño = new JFrame();
+		frmIngresarNuevoDueño.setTitle("Ingresar nuevo dueño");
+		frmIngresarNuevoDueño.setBounds(100, 100, 450, 285);
+		frmIngresarNuevoDueño.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmIngresarNuevoDueño.getContentPane().setLayout(null);
+		frmIngresarNuevoDueño.setLocationRelativeTo(null);
 		
 		JLabel lblCedula = new JLabel("Cedula:");
 		lblCedula.setBounds(10, 11, 182, 14);
-		frmIngresarNuevoDueo.getContentPane().add(lblCedula);
+		frmIngresarNuevoDueño.getContentPane().add(lblCedula);
 		
 		txtCedula = new JTextField();
 		txtCedula.setBounds(10, 36, 414, 29);
-		frmIngresarNuevoDueo.getContentPane().add(txtCedula);
+		frmIngresarNuevoDueño.getContentPane().add(txtCedula);
 		txtCedula.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setBounds(10, 76, 171, 14);
-		frmIngresarNuevoDueo.getContentPane().add(lblNombre);
+		frmIngresarNuevoDueño.getContentPane().add(lblNombre);
 		
 		txtNombre = new JTextField();
 		txtNombre.setBounds(10, 101, 414, 29);
-		frmIngresarNuevoDueo.getContentPane().add(txtNombre);
+		frmIngresarNuevoDueño.getContentPane().add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		JLabel lblApellido = new JLabel("Apellido:");
 		lblApellido.setBounds(10, 141, 161, 14);
-		frmIngresarNuevoDueo.getContentPane().add(lblApellido);
+		frmIngresarNuevoDueño.getContentPane().add(lblApellido);
 		
 		txtApellido = new JTextField();
 		txtApellido.setBounds(10, 166, 414, 29);
-		frmIngresarNuevoDueo.getContentPane().add(txtApellido);
+		frmIngresarNuevoDueño.getContentPane().add(txtApellido);
 		txtApellido.setColumns(10);
 		
 		JButton btnIngresar = new JButton("Ingresar");
@@ -84,7 +85,7 @@ public class VentanaNuevoDueño {
 							try{
 								micedula = Integer.parseInt(txtCedula.getText());
 							}catch(NumberFormatException nfe){
-								JOptionPane.showMessageDialog(frmIngresarNuevoDueo,"La cedula debe ser un numero.");
+								JOptionPane.showMessageDialog(frmIngresarNuevoDueño,"La cedula debe ser un numero.");
 							}
 							
 							if(micedula != -1){
@@ -103,16 +104,16 @@ public class VentanaNuevoDueño {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();
 								}
-								JOptionPane.showMessageDialog(frmIngresarNuevoDueo,"Dueño creado con exito.");
-								frmIngresarNuevoDueo.dispose();
+								JOptionPane.showMessageDialog(frmIngresarNuevoDueño,"Dueño creado con exito.");
+								frmIngresarNuevoDueño.dispose();
 							}					
 	
 					} else {
-						JOptionPane.showMessageDialog(frmIngresarNuevoDueo,"Tienes que completar todos los campos.");
+						JOptionPane.showMessageDialog(frmIngresarNuevoDueño,"Tienes que completar todos los campos.");
 					}
 			}
 		});
 		btnIngresar.setBounds(301, 206, 123, 29);
-		frmIngresarNuevoDueo.getContentPane().add(btnIngresar);
+		frmIngresarNuevoDueño.getContentPane().add(btnIngresar);
 	}
 }
