@@ -51,7 +51,9 @@ public class ControladorListarMascotas {
 		mlist.clear();
 		for(VOMascota item : listamascotas) {
 			String apodo = item.getApodo();
-			mlist.addElement(apodo);
+			String raza = item.getRaza();
+			mlist.addElement(apodo + " ("+ raza + ")");
+//			mlist.addElement(apodo);
 			listacod[pos]= cedula;
 			pos++;
 		}
