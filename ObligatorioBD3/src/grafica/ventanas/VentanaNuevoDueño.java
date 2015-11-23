@@ -104,6 +104,7 @@ public class VentanaNuevoDueño {
 									e1.printStackTrace();
 								}
 								JOptionPane.showMessageDialog(frmIngresarNuevoDueo,"Dueño creado con exito.");
+								frmIngresarNuevoDueo.dispose();
 							}					
 	
 					} else {

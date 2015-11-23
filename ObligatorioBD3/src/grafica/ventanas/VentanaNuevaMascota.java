@@ -105,6 +105,8 @@ public class VentanaNuevaMascota {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
+						JOptionPane.showMessageDialog(frmIngresarNuevaMascota,"Mascota creada con éxito.");
+						frmIngresarNuevaMascota.dispose();
 					}
 				}else{
 					JOptionPane.showMessageDialog(frmIngresarNuevaMascota,"Debes completar todos los campos.");

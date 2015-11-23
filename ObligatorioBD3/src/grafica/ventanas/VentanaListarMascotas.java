@@ -59,13 +59,17 @@ public class VentanaListarMascotas {
 		btnListar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				int cedula = Integer.parseInt(txtCedula.getText());
-				DefaultListModel mlist;
+				DefaultListModel mlist = new DefaultListModel();;
+				mlist.clear();
 				try {
 					mlist = controlador.listarMascotas(cedula);
+					System.out.print("Tamaño lista:" + mlist.size()+"\n");
 					JList list = new JList(mlist);
+					//frame.invalidate();
+					frame.revalidate();
+					frame.repaint();
 					list.setBounds(10, 71, 414, 180);
 					frame.getContentPane().add(list);
-					frame.repaint();
 				} catch (RemoteException | ClassNotFoundException | NonexistentEntityException
 						| PersistenciaException e1) {
 					JOptionPane.showMessageDialog(frame,
