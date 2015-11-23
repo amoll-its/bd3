@@ -1,10 +1,11 @@
-package logica;
+package retirar;
 
 import java.lang.management.ManagementFactory;
 import java.rmi.Naming;
 import java.util.LinkedList;
 import java.util.List;
 
+import logica.IFachada;
 import logica.valueObjects.VODueño;
 import logica.valueObjects.VOMascota;
 

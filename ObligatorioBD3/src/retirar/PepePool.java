@@ -1,4 +1,4 @@
-package logica;
+package retirar;
 
 import java.rmi.Naming;
 import java.util.LinkedList;

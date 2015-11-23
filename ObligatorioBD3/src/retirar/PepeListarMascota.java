@@ -1,4 +1,4 @@
-package logica;
+package retirar;
 
 import java.lang.management.ManagementFactory;
 import java.rmi.Naming;
@@ -8,39 +8,40 @@ import java.util.List;
 import logica.Entidades.EDueño;
 import logica.valueObjects.VODueño;
 import logica.valueObjects.VOMascota;
-import persistencia.daos.DAODueños;
 import persistencia.daos.DAODueñosArchivo;
+import persistencia.daos.DAOMascotasArchivo;
 import persistencia.daos.IDAODueños;
+import persistencia.daos.IDAOMascotas;
 import poolConexiones.IConexion;
 import poolConexiones.IPoolConexiones;
 import poolConexiones.PoolConexiones;
 
 
-public class PepeInsertar {
+public class PepeListarMascota {
 
 	public static void main(String[] args) {
-		// Prueba de "Listar Dueños"
+		// Prueba de "Listar Mascotas"
 		try
 		  {
-
 			IPoolConexiones ipool;
 
 			ipool = (IPoolConexiones) new PoolConexiones();
 
 			IConexion icon = ipool.obtenerConexion(true);
 
-			int cedula = 33333333;
-			String nombre = "XXXXXXXXX";
-			String apellido = "JJJJJJJJJ";
-			
-			EDueño ed = new EDueño (cedula,nombre,apellido);  		
-			
 			IDAODueños ddueños = new DAODueñosArchivo ();
-			ddueños.insert (ed, icon);
-			
-			System.out.print("Datos: " + cedula + " - " + nombre + " - " + apellido + "\n");
 
+			int ced = 2345678;
+			IDAOMascotas dmascotas = new DAOMascotasArchivo (ced);
+
+			List <VOMascota> lista = new LinkedList<VOMascota> ();
+			lista = dmascotas.listarMascotas(icon);
 			
+			for(VOMascota item : lista) {
+				String apodo = item.getApodo ();
+				String raza = item.getRaza ();
+				System.out.print("Datos: " + ced + " - " + apodo + " - " + raza + "\n");
+				}
 		  }
 		  catch (Exception e)
 		  {

@@ -1,4 +1,4 @@
-package logica;
+package retirar;
 
 import java.lang.management.ManagementFactory;
 import java.rmi.Naming;
@@ -16,7 +16,7 @@ import poolConexiones.IPoolConexiones;
 import poolConexiones.PoolConexiones;
 
 
-public class PepeBuscar {
+public class PepeInsertar {
 
 	public static void main(String[] args) {
 		// Prueba de "Listar Dueños"
@@ -29,15 +29,14 @@ public class PepeBuscar {
 
 			IConexion icon = ipool.obtenerConexion(true);
 
+			int cedula = 33333333;
+			String nombre = "XXXXXXXXX";
+			String apellido = "JJJJJJJJJ";
+			
+			EDueño ed = new EDueño (cedula,nombre,apellido);  		
+			
 			IDAODueños ddueños = new DAODueñosArchivo ();
-
-			int ced = 1234567;
-			// Busco al dueño según la cédula
-			EDueño ed = ddueños.find(ced,icon);
-
-			int cedula = ed.getCedula();
-			String nombre = ed.getNombre();
-			String apellido = ed.getApellido();
+			ddueños.insert (ed, icon);
 			
 			System.out.print("Datos: " + cedula + " - " + nombre + " - " + apellido + "\n");
 
