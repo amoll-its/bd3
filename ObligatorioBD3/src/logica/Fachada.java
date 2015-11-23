@@ -60,8 +60,6 @@ public class Fachada
 
 	public List <VODueño> listarDueños  () throws RemoteException, PersistenciaException {
 
-		
-//		DAODueños ddueños = new DAODueños ();
 		IDAODueños ddueños = fabrica.crearDAODueños();
 		
 		IConexion icon = ipool.obtenerConexion(true);

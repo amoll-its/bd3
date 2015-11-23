@@ -29,8 +29,8 @@ public class VentanaListarDueños {
 			initialize();
 
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(frame,
-					"No se pudo establecer la conexión.");
+			JOptionPane.showMessageDialog(frame, "No se pudo establecer la conexión.(VentanaListarDueños)");
+			e.printStackTrace();
 		}
 	}
 	
