@@ -47,7 +47,6 @@ public class DAOMascotasArchivo implements IDAOMascotas {
 				Files.write(path, contenido, ENCODING);				
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

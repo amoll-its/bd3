@@ -31,17 +31,6 @@ public class DAOMascotas implements IDAOMascotas {
 	
 	public void insert (EMascota em, IConexion icon) throws SQLException  {
 
-		// Abro la conexión a la BD
-/*		Connection con = null;
-		AccesoBD abd = new AccesoBD();
-		if (con == null)
-		try {
-			con = abd.abroCon();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-*/
 		Connection con = ((Conexion)icon).getConnection();
 		
 		Consultas cons = new Consultas ();
@@ -53,24 +42,11 @@ public class DAOMascotas implements IDAOMascotas {
 			int result=pstmt.executeUpdate();
 			pstmt.close();
 
-		/* cierro la conexión */
-//			abd.cierroCon(con);
 		
 	}
 	
 	public List<VOMascota> listarMascotas(IConexion icon) throws SQLException {
 
-		// Abro la conexión a la BD
-/*		Connection con = null;
-		AccesoBD abd = new AccesoBD();
-		if (con == null)
-		try {
-			con = abd.abroCon();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-*/
 		Connection con = ((Conexion)icon).getConnection();
 		
 		List <VOMascota> listamas = new LinkedList<VOMascota> (); 
@@ -90,28 +66,14 @@ public class DAOMascotas implements IDAOMascotas {
 			rs.close();
 			pstmt.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		/* cierro la conexión */
-		//	abd.cierroCon(con);
 		return listamas;
 	}
 	
 	public void borrarMascotas(IConexion icon) throws SQLException {
 
-		// Abro la conexión a la BD
-/*		Connection con = null;
-		AccesoBD abd = new AccesoBD();
-		if (con == null)
-		try {
-			con = abd.abroCon();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-*/
 		Connection con = ((Conexion)icon).getConnection();
 		
 		Consultas cons = new Consultas ();
@@ -121,9 +83,6 @@ public class DAOMascotas implements IDAOMascotas {
 		pstmt.setInt (1, cedulaDueño);
 		int result=pstmt.executeUpdate();
 		pstmt.close();
-		
-		/* cierro la conexión */
-		//abd.cierroCon(con);		
-		
+				
 	}
 }

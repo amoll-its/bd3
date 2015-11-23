@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -73,12 +74,14 @@ public class DAODueñosArchivo implements IDAODueños {
 		File folder = new File(datafolder);
 		String nomarch = Integer.toString(ed.getCedula());
 		Path path = Paths.get(folder + "/" + "duenio-" + nomarch + ".txt");
-		
-		try {
-			Files.write(path, contenido, ENCODING);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (Files.exists(path)) {
+			throw new PreexistingEntityException ("La cédula ya está registrada");
+		} else {
+			try {
+				Files.write(path, contenido, ENCODING);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 		}
 		
 	}

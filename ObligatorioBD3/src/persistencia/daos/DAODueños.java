@@ -53,7 +53,6 @@ public class DAODueños implements IDAODueños {
 			rs.close();
 			stmt.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return lista;
@@ -90,17 +89,6 @@ public class DAODueños implements IDAODueños {
 		String nombre = "";
 		String apellido = ""; 		
 		
-		// Abro la conexión a la BD
-/*		Connection con = null;
-		AccesoBD abd = new AccesoBD();
-		if (con == null)
-		try {
-			con = abd.abroCon();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-*/
 		Connection con = ((Conexion)icon).getConnection();
 		
 		Consultas cons = new Consultas ();
