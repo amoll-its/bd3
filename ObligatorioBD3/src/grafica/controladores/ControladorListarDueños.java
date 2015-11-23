@@ -40,7 +40,7 @@ public class ControladorListarDueños {
 			int cedula = item.getCedula ();
 			String nombre = item.getNombre ();
 			String apellido = item.getApellido ();
-			mlist.addElement(apellido + ", " + nombre);
+			mlist.addElement(cedula + ", "+ apellido + ", " + nombre);
 			listacod[pos]= cedula;
 			pos++;
 		}
