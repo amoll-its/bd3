@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
@@ -61,18 +62,6 @@ public class DAODueños implements IDAODueños {
 	public void insert (EDueño ed, IConexion icon) throws PreexistingEntityException {
 		/* inserta un nuevo dueño en la base de datos */
 
-		// Abro la conexión a la BD
-/*		Connection con = null;
-		AccesoBD abd = new AccesoBD();
-		if (con == null)
-		try {
-			con = abd.abroCon();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-*/
 		Connection con = ((Conexion)icon).getConnection();
 		
 		Consultas cons = new Consultas ();
@@ -85,18 +74,12 @@ public class DAODueños implements IDAODueños {
 			int result=pstmt.executeUpdate();
 			pstmt.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			if (e instanceof SQLIntegrityConstraintViolationException) {
+				throw new PreexistingEntityException ("La cédula ya está registrada");
+			} else {
+				e.printStackTrace();
+		    }
 		}
-
-		/* cierro la conexión */
-		/*try {
-			abd.cierroCon(con);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-*/
 		
 	}
 
